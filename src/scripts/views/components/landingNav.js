@@ -11,8 +11,8 @@ var LandingNav = React.createClass({
 		return (
 			<div className="landing-nav">
 				<a className="logo landing-button" href="#home">Crumb.</a>
-				<button className="sign-up landing-button" type='button' onClick={this._handleSignUp}>Sign up for free today!</button>
 				<button className="log-in landing-button" type='button' onClick={this._handleLogIn}>Log in</button>
+				<button className="sign-up landing-button" type='button' onClick={this._handleSignUp}>Sign up for free today!</button>
 			</div>
 			)
 	}

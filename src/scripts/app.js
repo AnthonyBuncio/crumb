@@ -6,16 +6,18 @@ import init from './init'
 import LandingPage from './views/landingPage.js'
 import SignupPage from './views/signupPage.js'
 import LoginPage from './views/loginPage.js'
+import HomePage from './views/homePage.js'
 
 const app = function() {
   var Router = Backbone.Router.extend({
   	routes : {
-  		"home" : "showHome",
+  		"" : "showLanding",
   		"signup" : "showSignup",
   		"login" : "showLogin",
+      "home" : "showHome",
   		"*default" : "handleDefault"
   	},
-  	showHome: function() {
+  	showLanding: function() {
   		ReactDOM.render(<LandingPage />, document.querySelector('.container'))
   	},
   	showSignup: function() {
@@ -24,8 +26,11 @@ const app = function() {
   	showLogin: function() {
   		ReactDOM.render(<LoginPage />, document.querySelector('.container'))
   	},
+    showHome: function() {
+      ReactDOM.render(<HomePage />, document.querySelector('.container'))
+    },
   	handleDefault: function() {
-  		location.hash = "home"
+  		location.hash = ""
   	}
   })
   new Router

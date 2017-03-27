@@ -17,12 +17,42 @@ body,html {
 }
 
 //*************************************
+// 			HOME NAVIGATION
+//*************************************
+.nav-wrapper {
+	height: 40px;
+	border: 1px solid black;
+	font-size: 1.5rem;
+}
+
+.home-button {
+	text-decoration: none;
+	color: black;
+	float: left;
+	padding: 5px 30px;
+}
+
+.settings-nav {
+	text-align: left;
+	width: 33%;
+}
+
+.home-nav {
+	text-align: center;
+	width: 34%;
+}
+
+.logout-nav {
+	text-align: right;
+	width: 33%;
+}
+//*************************************
 //			 LANDING PAGE
 //*************************************
 .hero-text {
 	position: fixed;
 	top: 45%;
-	left: 32%;
+	left: 30%;
 	transform: translate(-50%,-50%);
 	text-align: center;
 }
@@ -49,7 +79,8 @@ body,html {
 
 .landing-page {
 	position: absolute;
-	background: url('../images/landing.jpg') bottom center;
+	// background: url('../images/landing.jpg') bottom center;
+	background: url('../images/landing2.jpg') 10% top;
  	background-size: cover;
  	height: 100vh;
  	width: 100%
@@ -70,7 +101,7 @@ body,html {
 .logo {
 	text-decoration: none;
 	color: black;
-	font-size: 2.5rem;
+	font-size: 3rem;
 	padding: 15px 15px;
 }
 
@@ -92,5 +123,58 @@ body,html {
 
 .sign-up:focus,.log-in:focus,.hero-button:focus {
 	outline: 0;
+}
+
+//*************************************
+//		   SIGNUP//LOGIN PAGE
+//*************************************
+.form-container {
+	position: relative;
+	height: 100vh;
+
+	position: absolute;
+	background: url('../images/landing.jpg') bottom center;
+	// background: url('../images/landing2.jpg') 10% top;
+ 	background-size: cover;
+ 	width: 100%
+}
+
+.login-form,.signup-form {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+button.login,button.signup {
+	padding: 15px 20px;
+	font-size: 1.5rem;
+	cursor: pointer;
+	border-radius: 5px;
+	border: none;
+	background: $button;
+}
+
+.login,.signup {
+	display: block;
+	margin-top: 20px;
+	width: 300px;
+}
+
+.create-form {
+	// width: 250px;
+    height: 30px;
+    border-color: transparent transparent $button transparent;
+    color: gray;
+    font-size: 2rem;
+    background: transparent;
+}
+
+.login:focus,.signup:focus {
+	outline:0;
+}
+
+button.login:hover,button.signup:hover {
+	background: $button-highlight;
 }
 
