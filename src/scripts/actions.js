@@ -29,8 +29,7 @@ var ACTIONS = {
 	registerUser: function(newUser) {
 		User.register(newUser)
 			.done(function(response) {
-				alert('a new user has been registered')
-				console.log(response)
+				ACTIONS.loginUser(newUser.email, newUser.password)
 			})
 			.fail(function(error) {
 				alert('an error has occured registering user')

@@ -1,11 +1,13 @@
 import React from 'react'
 
 import ACTIONS from '../actions.js'
+import LandingNav from '../views/components/landingNav.js'
 
 var SignupPage = React.createClass({
 	render: function() {
 		return (
-			<div className="form-container">
+			<div className="form-container signup-container">
+				<LandingNav />
 				<SignupForm />
 			</div>
 			)

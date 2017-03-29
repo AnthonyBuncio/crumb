@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 $button: #49beaf;
-$button-highlight: #389c8f;
+$button-highlight: #3fafa1;
 $button-compliment: #be4958;
 
 * {
@@ -90,7 +90,7 @@ body,html {
 	position: fixed;
 	width: 100%;
 	border-bottom: 1px solid black;
-	background: white;
+	background: transparent;
 	height: 70px;
 }
 
@@ -103,6 +103,7 @@ body,html {
 	color: black;
 	font-size: 3rem;
 	padding: 15px 15px;
+	letter-spacing: .5rem;
 }
 
 .sign-up,.log-in {
@@ -133,10 +134,18 @@ body,html {
 	height: 100vh;
 
 	position: absolute;
-	background: url('../images/landing.jpg') bottom center;
+	background: url('../images/landing3.jpg') bottom center;
 	// background: url('../images/landing2.jpg') 10% top;
  	background-size: cover;
  	width: 100%
+}
+
+.form-container .landing-nav {
+	border-bottom: 1px solid white;
+}
+
+.form-container .logo {
+	color: white;
 }
 
 .login-form,.signup-form {
@@ -165,9 +174,13 @@ button.login,button.signup {
 	// width: 250px;
     height: 30px;
     border-color: transparent transparent $button transparent;
-    color: gray;
+    color: white;
     font-size: 2rem;
     background: transparent;
+}
+
+.create-form::placeholder {
+   	color: white;
 }
 
 .login:focus,.signup:focus {
@@ -176,5 +189,14 @@ button.login,button.signup {
 
 button.login:hover,button.signup:hover {
 	background: $button-highlight;
+}
+
+//On sign-up page, hides 'signup' button on nav header
+.signup-container .sign-up {
+	display: none;
+}
+//On log-in page, hides 'login' button on nav header
+.login-container .log-in {
+	display: none;
 }
 

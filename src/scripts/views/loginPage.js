@@ -1,11 +1,13 @@
 import React from 'react'
 
 import ACTIONS from '../actions.js'
+import LandingNav from '../views/components/landingNav.js'
 
 var LoginPage = React.createClass({
 	render: function() {
 		return (
-			<div className="form-container">
+			<div className="form-container login-container">
+				<LandingNav />
 				<LoginForm />
 			</div>
 			)
