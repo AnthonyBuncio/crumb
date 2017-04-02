@@ -16,42 +16,80 @@ body,html {
   font-size: 12px;
 }
 
+a {
+	text-decoration: none;
+	color: $button;
+}
+
 //*************************************
 // 			HOME NAVIGATION
 //*************************************
 .nav-wrapper {
-	height: 40px;
-	border: 1px solid black;
-	font-size: 1.5rem;
+	height: 50px;
+	font-size: 2.5rem;
+	border-bottom: 1px solid black;
 }
 
 .home-button {
 	text-decoration: none;
-	color: black;
-	float: left;
 	padding: 5px 30px;
+	cursor: pointer;
 }
 
-.settings-nav {
-	text-align: left;
+.settings-nav-wrapper,.home-nav-wrapper,.logout-nav-wrapper {
+	display: inline-block;
+	vertical-align: top;
+	color: $button;
+}
+
+.settings-nav-wrapper {
+	text-align: center;
 	width: 33%;
+	padding-bottom: 5px;
 }
 
-.home-nav {
+.home-nav-wrapper {
 	text-align: center;
 	width: 34%;
+	padding-bottom: 10px;
+	padding-top: 5px;
 }
 
-.logout-nav {
-	text-align: right;
+.logout-nav-wrapper {
+	text-align: center;
 	width: 33%;
+	padding-bottom: 10px;
+	padding-top: 5px;
 }
+
+.menu {
+  padding: 0;
+  margin: 0;
+  height: 0; /*at rest, menu has height of 0*/
+  overflow: hidden; /*prevents text from overflowing its container */
+  transition: .75s height ease;
+}
+
+.menu-title {
+	margin: 0;
+}
+
+.menu li {
+  list-style: none;
+  margin: 10px 0px; 
+}
+
+p.menu-title:hover + .menu, .menu:hover {
+  height: 100px; /* when the title is hovered, the menu will expand to 410px */
+  z-index: 100;
+}
+
 //*************************************
 //			 LANDING PAGE
 //*************************************
 .hero-text {
 	position: fixed;
-	top: 45%;
+	top: 50%;
 	left: 30%;
 	transform: translate(-50%,-50%);
 	text-align: center;
@@ -75,6 +113,8 @@ body,html {
 	border-radius: 5px;
 	border: none;
 	background: $button;
+	margin-bottom: 15px;
+	text-align: center;
 }
 
 .landing-page {
@@ -190,6 +230,15 @@ button.login,button.signup {
 button.login:hover,button.signup:hover {
 	background: $button-highlight;
 }
+
+//### Uncomment if i decide to put 'Create account' & 'Sign in' header above forms
+// .title {
+// 	text-align: center;
+// 	color: white;
+// 	font-size: 3rem;
+// 	font-weight: 300;
+// 	margin-bottom: 50px;
+// }
 
 //On sign-up page, hides 'signup' button on nav header
 .signup-container .sign-up {

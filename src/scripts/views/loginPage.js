@@ -22,11 +22,14 @@ var LoginForm = React.createClass({
 	},
 	render: function() {
 		return (
-			<form onSubmit={this._handleSubmit} className="login-form">
-				<input className="create-form login" name="email" type="text" placeholder="Your email"/>
-				<input className="create-form login" name="password" type="password" placeholder="Your password"/>
-				<button className="login" type="submit">Log in</button>
-			</form>
+			<div className="login-form">
+				{/* <h2 className="title">Sign In</h2> */}
+				<form onSubmit={this._handleSubmit}>
+					<input className="create-form login" name="email" type="text" placeholder="Your email"/>
+					<input className="create-form login" name="password" type="password" placeholder="Your password"/>
+					<button className="login" type="submit">Log in</button>
+				</form>
+			</div>
 			)
 	}
 })

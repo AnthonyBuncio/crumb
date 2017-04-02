@@ -1,12 +1,24 @@
 import STORE from './store.js'
 
 import User from './models/userModel.js'
+import {HouseModel} from './models/houseModel.js'
 
 var ACTIONS = {
+	addHouse: function(formData) {
+		var newHouse = new HouseModel(formData)
+		newHouse.save()
+			.done(function(response) {
+				alert('saved your home!')
+				User.getCurrentUser().get('houseId').push(response)
+			})
+			.fail(function(error) {
+				alert('error saving your home')
+				console.log(error)
+			})
+	},
 	loginUser: function(email, password) {
 		User.login(email, password)
 			.done(function(response) {
-				alert('this user has logged in')
 				console.log(response)
 				location.hash = 'home'
 			})

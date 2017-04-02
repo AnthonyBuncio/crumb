@@ -7,27 +7,32 @@ import LandingPage from './views/landingPage.js'
 import SignupPage from './views/signupPage.js'
 import LoginPage from './views/loginPage.js'
 import HomePage from './views/homePage.js'
+import MakeHousePage from './views/createHousePage.js'
 
 const app = function() {
   var Router = Backbone.Router.extend({
   	routes : {
   		"" : "showLanding",
+      "home" : "showHome",
   		"signup" : "showSignup",
   		"login" : "showLogin",
-      "home" : "showHome",
+      "create" : "makeHouse",
   		"*default" : "handleDefault"
   	},
   	showLanding: function() {
   		ReactDOM.render(<LandingPage />, document.querySelector('.container'))
   	},
+    showHome: function() {
+      ReactDOM.render(<HomePage />, document.querySelector('.container'))
+    },
   	showSignup: function() {
   		ReactDOM.render(<SignupPage />, document.querySelector('.container'))
   	},
   	showLogin: function() {
   		ReactDOM.render(<LoginPage />, document.querySelector('.container'))
   	},
-    showHome: function() {
-      ReactDOM.render(<HomePage />, document.querySelector('.container'))
+    makeHouse: function() {
+      ReactDOM.render(<MakeHousePage />, document.querySelector('.container'))
     },
   	handleDefault: function() {
   		location.hash = ""

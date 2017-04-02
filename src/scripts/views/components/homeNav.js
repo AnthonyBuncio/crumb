@@ -5,11 +5,26 @@ import ACTIONS from '../../actions.js'
 
 var HomeNav = React.createClass({
 	render: function() {
+		var _nameToUpperCase = User.getCurrentUser().get('name').charAt(0).toUpperCase() + User.getCurrentUser().get('name').slice(1)
 		return (
 			<div className="nav-wrapper">
-				<a className="settings-nav home-button" href="#settings">{User.getCurrentUser().get('name')}</a>
-				<a className="home-nav home-button" href="#home">Home</a>
-				<a className="logout-nav home-button" onClick={ACTIONS.logoutUser} href="#landing">Logout</a>
+				<div className="settings-nav-wrapper">
+					<p className="menu-title home-button">{_nameToUpperCase}</p>
+					<ul className="menu">
+						<li>
+							<a className="create-nav home-button" href="#create">Add home</a>
+						</li>
+						<li>
+							<a className="settings-nav home-button" href="#settings">Settings</a>
+						</li>
+					</ul>
+				</div>
+				<div className="home-nav-wrapper">
+					<a className="home-nav home-button" href="#home">Home</a>
+				</div>
+				<div className="logout-nav-wrapper">
+					<a className="logout-nav home-button" onClick={ACTIONS.logoutUser} href="#landing">Logout</a>
+				</div>
 			</div>
 			)
 	}

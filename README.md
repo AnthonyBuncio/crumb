@@ -1,7 +1,8 @@
 <h1>#crumb</h1>
 
 <h2>Description</h2>
-My final project application for the Iron Yard Houston. Crumb is a single page web application designed for multiple household members, rental occupants, or anyone trying to keep up with their finances really. This application uses several frameworks/libraries such as:
+My final project application for the Iron Yard Houston. Crumb is a single page web application designed for multiple household members, rental occupants, or anyone trying to keep up with their finances, really. This application uses several frameworks/libraries such as:
+<br>
 <ul>
 <li>Javascript(Duh)</li>
 <li>Backbone.js</li>

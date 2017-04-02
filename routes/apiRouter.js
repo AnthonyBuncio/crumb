@@ -1,9 +1,9 @@
-let Router = require('express').Router;
+const Router = require('express').Router;
 const apiRouter = Router()
-let helpers = require('../config/helpers.js')
+const helpers = require('../config/helpers.js')
 
-let User = require('../db/schema.js').User
-
+const User = require('../db/schema.js').User
+const Home = require('../db/schema.js').Home
   
   apiRouter
     .get('/users', function(req, res){
@@ -46,6 +46,46 @@ let User = require('../db/schema.js').User
     })
 
     // Routes for a Model(resource) should have this structure
+
+    apiRouter
+      .get('/homes', function(request, response) {
+        Home.find(request.query, function(error, records) {
+          if (error) {
+            return response.status(400).json(error)
+          }
+          response.json(records)
+        })
+      })
+
+      .post('/homes', function(request, response) {
+        var newHome = new Home(request.body)
+        newHome.save(function(error, record) {
+          if (error) {
+            return response.status(400).json(error)
+          }
+          response.json(record)
+        })
+      })
+
+      .put('/homes/:id', function(request, response) {
+        Home.findByIdAndUpdate(request.params.id, request.body, {new:true}, function(error, record) {
+          if (error) {
+            return response.status(400).json(error)
+          }
+          response.json(record)
+        })
+      })
+
+      .delete('/homes/:id', function(request, response) {
+        Home.remove({_id: request.params.id}, function(error) {
+          if (error) {
+            return response.status(400).json(error)
+          }
+          response.json({
+            msg: `target with id ${request.params.id} has been eliminated.`
+          })
+        })
+      })
 
 
 module.exports = apiRouter

@@ -10,7 +10,20 @@ var HomePage = React.createClass({
 		return (
 			<div>
 				<HomeNav />
-				<h1>WELCOME TO MY AMAZING FINANCE TRACKING APP, <span>{User.getCurrentUser().get('name')}</span>. WE ARE CURRENTLY UNDER CONSTRUCTION. PLEASE COME BACK IN 2-3 WEEKS. THANK YOU FOR YOUR COOPERATION!</h1>
+
+				{/* remove once HomeNav is fixed */}
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+
+				<h1>Welcome to my amazing finance tracking app, <span>{User.getCurrentUser().get('name')}</span>. We are currently under construction. Please come back in 2-3 weeks. Thank you for your cooperation!</h1>
 			</div>
 			)
 	}
