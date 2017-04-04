@@ -10,7 +10,7 @@ const Home = require('../db/schema.js').Home
       User.find(req.query , "-password", function(err, results){
         if(err) return res.json(err) 
         res.json(results)
-      })
+      }).populate('Home')
     })
 
   apiRouter
@@ -58,12 +58,21 @@ const Home = require('../db/schema.js').Home
       })
 
       .post('/homes', function(request, response) {
+        console.log(request.body)
         var newHome = new Home(request.body)
-        newHome.save(function(error, record) {
+        newHome.save(function(error, houseRecord) {
           if (error) {
             return response.status(400).json(error)
           }
-          response.json(record)
+        User.findByIdAndUpdate(request.body.userId, request.body.userId, (err, userRecord)=>{
+          if(err) {
+            return response.json(err)
+          } else {
+            userRecord.houseId = houseRecord._id
+            userRecord.save()
+          }
+        })
+          response.json(houseRecord)        
         })
       })
 

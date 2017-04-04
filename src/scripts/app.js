@@ -8,6 +8,8 @@ import SignupPage from './views/signupPage.js'
 import LoginPage from './views/loginPage.js'
 import HomePage from './views/homePage.js'
 import MakeHousePage from './views/createHousePage.js'
+import AddMembers from './views/createMemberPage.js'
+import ProfilePage from './views/profilePage.js'
 
 const app = function() {
   var Router = Backbone.Router.extend({
@@ -16,7 +18,9 @@ const app = function() {
       "home" : "showHome",
   		"signup" : "showSignup",
   		"login" : "showLogin",
-      "create" : "makeHouse",
+      "createhouse" : "makeHouse",
+      "addmembers" : "addMembers",
+      "myprofile" : "showProfile",
   		"*default" : "handleDefault"
   	},
   	showLanding: function() {
@@ -33,6 +37,12 @@ const app = function() {
   	},
     makeHouse: function() {
       ReactDOM.render(<MakeHousePage />, document.querySelector('.container'))
+    },
+    addMembers: function() {
+      ReactDOM.render(<AddMembers />, document.querySelector('.container'))
+    },
+    showProfile: function() {
+      ReactDOM.render(<ProfilePage />, document.querySelector('.container'))
     },
   	handleDefault: function() {
   		location.hash = ""

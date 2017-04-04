@@ -1,9 +1,8 @@
 import React from 'react'
 
 import HomeNav from './components/homeNav.js'
-import HouseForm from './components/createHouseForm.js'
 
-var MakeHousePage = React.createClass({
+var ProfilePage = React.createClass({
 	render: function() {
 		return (
 			<div>
@@ -22,11 +21,11 @@ var MakeHousePage = React.createClass({
 						<br />
 						<br />
 
-						<HouseForm />
+						<p>Here you can edit your profile, such as name, email, (house name?)</p>
 					</div>
 			</div>
 			)
 	}
 })
 
-export default MakeHousePage
+export default ProfilePage

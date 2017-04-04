@@ -12,10 +12,13 @@ var HomeNav = React.createClass({
 					<p className="menu-title home-button">{_nameToUpperCase}</p>
 					<ul className="menu">
 						<li>
-							<a className="create-nav home-button" href="#create">Add home</a>
+							<a className="create-nav home-button" href="#createhouse">+ house</a>
 						</li>
 						<li>
-							<a className="settings-nav home-button" href="#settings">Settings</a>
+							<a className="home-button" href="#addmembers">+ members</a>
+						</li>
+						<li>
+							<a className="settings-nav home-button" href="#myprofile">Profile</a>
 						</li>
 					</ul>
 				</div>

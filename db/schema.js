@@ -10,13 +10,17 @@ const usersSchema = new mongoose.Schema({
   // x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x
   name:      { type: String },
   createdAt: { type: Date, default: Date.now },
-  houseId: []
+  houseId: { type: String }
 
 })
 
 const homeSchema = new mongoose.Schema({
 	name: { type: String, required: true },
-	createdAt: { type: Date, default: Date.now }
+	createdAt: { type: Date, default: Date.now },
+  
+  members: [{ type: String, required: false }],
+  maxExpenses: [{ type: String, required: false }],
+  paidExpenses: [{ type: String, required: false }]
 })
 
 module.exports = {

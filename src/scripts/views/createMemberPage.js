@@ -1,9 +1,9 @@
 import React from 'react'
 
 import HomeNav from './components/homeNav.js'
-import HouseForm from './components/createHouseForm.js'
+import MemberForm from './components/addMemberForm.js'
 
-var MakeHousePage = React.createClass({
+var AddMembers = React.createClass({
 	render: function() {
 		return (
 			<div>
@@ -22,11 +22,11 @@ var MakeHousePage = React.createClass({
 						<br />
 						<br />
 
-						<HouseForm />
+						<MemberForm />
 					</div>
 			</div>
 			)
 	}
 })
 
-export default MakeHousePage
+export default AddMembers

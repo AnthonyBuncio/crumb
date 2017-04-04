@@ -2,10 +2,10 @@ import React from 'react'
 
 import ACTIONS from '../../actions.js'
 
-var HouseForm = React.createClass({
+var MemberForm = React.createClass({
 	render: function() {
 		return (
-			<div className="house-form-wrapper">
+			<div className="member-form-wrapper">
 				<CreateForm />
 			</div>
 			)
@@ -17,20 +17,20 @@ var CreateForm = React.createClass({
 		eventObj.preventDefault()
 		var formEl = eventObj.target,
 			formData = {
-				name : formEl.houseName.value
+				members : formEl.member.value
 			}
 		formEl.reset()
 		console.log(formData)
-		ACTIONS.addHouse(formData)
+
 	},
 	render: function() {
 		return (
 			<form onSubmit={this._handleSubmit}>
-				<h3>Create a name for your home:</h3>
-				<input type='text' name='houseName' placeholder='House name' />
+				<h3>Add a new member to your team:</h3>
+				<input type='text' name='member' placeholder='Member name' />
 			</form>
 			)
 	}
 })
 
-export default HouseForm
+export default MemberForm

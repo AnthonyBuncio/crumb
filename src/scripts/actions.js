@@ -6,10 +6,13 @@ import {HouseModel} from './models/houseModel.js'
 var ACTIONS = {
 	addHouse: function(formData) {
 		var newHouse = new HouseModel(formData)
-		newHouse.save()
+		console.log(User.getCurrentUser().get('_id'))
+		newHouse.save({
+			userId: User.getCurrentUser().get('_id')
+		})
 			.done(function(response) {
 				alert('saved your home!')
-				User.getCurrentUser().get('houseId').push(response)
+				console.log(response)
 			})
 			.fail(function(error) {
 				alert('error saving your home')

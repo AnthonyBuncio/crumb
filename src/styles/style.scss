@@ -21,6 +21,11 @@ a {
 	color: $button;
 }
 
+.main-container {
+	width: 80%;
+	margin: 0 auto;
+}
+
 //*************************************
 // 			HOME NAVIGATION
 //*************************************
@@ -80,7 +85,7 @@ a {
 }
 
 p.menu-title:hover + .menu, .menu:hover {
-  height: 100px; /* when the title is hovered, the menu will expand to 410px */
+  height: 150px; /* when the title is hovered, the menu will expand to 410px */
   z-index: 100;
 }
 
