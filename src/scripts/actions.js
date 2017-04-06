@@ -1,8 +1,12 @@
 import STORE from './store.js'
 
 import User from './models/userModel.js'
-import {HouseModel} from './models/houseModel.js'
-import {ExpenseModel} from './models/expenseModel.js'
+import {HouseModel} from './models/appModel.js'
+import {HouseCollection} from './models/appModel.js'
+import {ExpenseModel} from './models/appModel.js'
+import {ExpenseCollection} from './models/appModel.js'
+import {UserCollection} from './models/appModel.js'
+
 
 var ACTIONS = {
 	addHouse: function(formData) {
@@ -33,6 +37,59 @@ var ACTIONS = {
 				console.log(error)
 			})
 
+	},
+	_getAllUserData: function() {
+		ACTIONS._getHouseMembers()
+		ACTIONS._getMyHouse()
+		ACTIONS._getHouseExpenses()
+	},
+	_getHouseMembers: function() {
+		var myMembers = STORE.get('houseMembers')
+		myMembers.fetch({
+			data: {
+				house: User.getCurrentUser().get('house')
+			}
+		})
+			.done(function() {
+				STORE.set({
+					houseMembers: myMembers
+				})
+			})
+			.fail(function(error) {
+				console.log(error)
+			})
+	},
+	_getMyHouse: function() {
+		var fetchMyHouse = STORE.get('myHouse')
+		fetchMyHouse.fetch({
+			data: {
+				_id: User.getCurrentUser().get('house')
+			}
+		})
+			.done(function() {
+				STORE.set({
+					myHouse: fetchMyHouse
+				})
+			})
+			.fail(function(error) {
+				console.log(error)
+			})
+	},
+	_getHouseExpenses: function() {
+		var myExpenses = STORE.get('houseExpenses')
+		myExpenses.fetch({
+			data: {
+				house: User.getCurrentUser().get('house')
+			}
+		})
+			.done(function() {
+				STORE.set({
+					houseExpenses: myExpenses
+				})
+			})
+			.fail(function(error) {
+				console.log(error)
+			})
 	},
 	loginUser: function(email, password) {
 		User.login(email, password)

@@ -1,12 +1,19 @@
 import React from 'react'
 
 import ACTIONS from '../../actions.js'
+import STORE from '../../store.js'
 
 var ExpenseForm = React.createClass({
+	componentWillMount: function() {
+		ACTIONS._getHouseMembers()
+		STORE.on('dataUpdated', () => {
+			this.setState(STORE.data)
+		})
+	},
 	render: function() {
 		return (
 			<div className="expense-form-wrapper">
-				<CreateForm />
+				<CreateForm houseMembers={STORE.get('houseMembers')}/>
 			</div>
 			)
 	}
@@ -18,11 +25,16 @@ var CreateForm = React.createClass({
 		var formEl = eventObj.target,
 			formData = {
 				category: formEl.expenseCategory.value,
-				/* debtor: formEl.expenseDebtor.value, */
+				debtor: formEl.expenseDebtor.value, 
 				amount: formEl.expenseAmount.value
 			}
 		formEl.reset()
+		console.log(formData.debtor)
 		ACTIONS.addExpense(formData)
+	},
+	_showOneMember: function(model) {
+		var _nameToUpperCase = model.get('name').charAt(0).toUpperCase() + model.get('name').slice(1)
+		return <option value={`${model.get('_id')}`}>{_nameToUpperCase}</option>
 	},
 	render: function() {
 		return (
@@ -38,9 +50,7 @@ var CreateForm = React.createClass({
 					<option value="Other">Other</option>
 				</select>
 				<select name='expenseDebtor'>
-					<option>ME</option>
-					<option>YOU</option>
-					<option>US</option>
+					{this.props.houseMembers.map(this._showOneMember)}
 				</select>
 				<input type='text' name='expenseAmount' placeholder='0.00'></input>
 			</form>

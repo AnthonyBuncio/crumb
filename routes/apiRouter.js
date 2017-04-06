@@ -124,7 +124,6 @@ const Expense = require('../db/schema.js').Expense
             if(err) {
               return response.json(err)
             } else {
-              expenseRecord.debtor = userRecord._id;
               expenseRecord.house = userRecord.house;
               expenseRecord.save()
             }
