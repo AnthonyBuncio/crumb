@@ -1,9 +1,9 @@
 import React from 'react'
 
 import HomeNav from './components/homeNav.js'
-import MemberForm from './components/addMemberForm.js'
+import ExpenseForm from './components/createExpenseForm.js'
 
-var AddMembers = React.createClass({
+var AddExpensePage = React.createClass({
 	render: function() {
 		return (
 			<div>
@@ -22,11 +22,11 @@ var AddMembers = React.createClass({
 						<br />
 						<br />
 
-						<MemberForm />
+						<ExpenseForm />
 					</div>
 			</div>
 			)
 	}
 })
 
-export default AddMembers
+export default AddExpensePage

@@ -20,12 +20,11 @@ var CreateForm = React.createClass({
 				name : formEl.houseName.value
 			}
 		formEl.reset()
-		console.log(formData)
 		ACTIONS.addHouse(formData)
 	},
 	render: function() {
 		return (
-			<form onSubmit={this._handleSubmit}>
+			<form onSubmit={this._handleSubmit} className="house-form">
 				<h3>Create a name for your home:</h3>
 				<input type='text' name='houseName' placeholder='House name' />
 			</form>

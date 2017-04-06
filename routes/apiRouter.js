@@ -4,6 +4,7 @@ const helpers = require('../config/helpers.js')
 
 const User = require('../db/schema.js').User
 const Home = require('../db/schema.js').Home
+const Expense = require('../db/schema.js').Expense
   
   apiRouter
     .get('/users', function(req, res){
@@ -47,6 +48,9 @@ const Home = require('../db/schema.js').Home
 
     // Routes for a Model(resource) should have this structure
 
+    //**********************************************
+    //                FOR HOMES
+    //**********************************************
     apiRouter
       .get('/homes', function(request, response) {
         Home.find(request.query, function(error, records) {
@@ -68,7 +72,8 @@ const Home = require('../db/schema.js').Home
           if(err) {
             return response.json(err)
           } else {
-            userRecord.houseId = houseRecord._id
+            userRecord.house = houseRecord._id;
+            userRecord.isOwner = true;
             userRecord.save()
           }
         })
@@ -96,5 +101,56 @@ const Home = require('../db/schema.js').Home
         })
       })
 
+    //**********************************************
+    //                FOR EXPENSES
+    //**********************************************
+    apiRouter
+      .get ('/expenses', function(request, response) {
+        Expense.find(request.query, function(error, records) {
+          if (error) {
+            return response.status(400).json(error)
+          }
+          response.json(records)
+        })
+      })
+
+      .post ('/expenses', function(request, response) {
+        var newExpense = new Expense(request.body)
+        newExpense.save(function(error, expenseRecord) {
+          if (error) {
+            return response.status(400).json(error)
+          }
+          User.findByIdAndUpdate(request.body.userId, request.body.userId, (err, userRecord)=>{
+            if(err) {
+              return response.json(err)
+            } else {
+              expenseRecord.debtor = userRecord._id;
+              expenseRecord.house = userRecord.house;
+              expenseRecord.save()
+            }
+          })
+          response.json(expenseRecord)
+        })
+      })
+
+      .put ('/expenses/:id', function(request, response) {
+        Expense.findByIdAndUpdate(request.params.id, request.body, {new:true}, function(error, record) {
+          if (error) {
+            return response.status(400).json(error)
+          }
+          response.json(record)
+        })
+      })
+
+      .delete ('/expenses/:id', function(request, response) {
+        Expense.remove({_id: request.params.id}, function(error) {
+          if (error) {
+            return response.status(400).json(error)
+          }
+          response.json({
+            msg: `target with id ${request.params.id} has been eliminated.`
+          })
+        })
+      })
 
 module.exports = apiRouter

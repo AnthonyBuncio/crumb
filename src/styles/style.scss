@@ -21,9 +21,18 @@ a {
 	color: $button;
 }
 
+//Should be the container inside of first div, right under HomeNav
 .main-container {
 	width: 80%;
 	margin: 0 auto;
+	background: gray;
+}
+
+//*************************************
+// 		   CREATE HOUSE PAGE
+//*************************************
+.house-form-wrapper {
+	border: 1px solid black;
 }
 
 //*************************************

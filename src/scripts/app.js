@@ -8,7 +8,7 @@ import SignupPage from './views/signupPage.js'
 import LoginPage from './views/loginPage.js'
 import HomePage from './views/homePage.js'
 import MakeHousePage from './views/createHousePage.js'
-import AddMembers from './views/createMemberPage.js'
+import AddExpensePage from './views/addExpensePage.js'
 import ProfilePage from './views/profilePage.js'
 
 const app = function() {
@@ -17,9 +17,10 @@ const app = function() {
   		"" : "showLanding",
       "home" : "showHome",
   		"signup" : "showSignup",
+      "signup/:id" : "showSignup",
   		"login" : "showLogin",
       "createhouse" : "makeHouse",
-      "addmembers" : "addMembers",
+      "addexpense" : "showExpenseForm",
       "myprofile" : "showProfile",
   		"*default" : "handleDefault"
   	},
@@ -29,8 +30,8 @@ const app = function() {
     showHome: function() {
       ReactDOM.render(<HomePage />, document.querySelector('.container'))
     },
-  	showSignup: function() {
-  		ReactDOM.render(<SignupPage />, document.querySelector('.container'))
+  	showSignup: function(id) {
+  		ReactDOM.render(<SignupPage houseId = {id}/>, document.querySelector('.container'))
   	},
   	showLogin: function() {
   		ReactDOM.render(<LoginPage />, document.querySelector('.container'))
@@ -38,8 +39,8 @@ const app = function() {
     makeHouse: function() {
       ReactDOM.render(<MakeHousePage />, document.querySelector('.container'))
     },
-    addMembers: function() {
-      ReactDOM.render(<AddMembers />, document.querySelector('.container'))
+    showExpenseForm: function() {
+      ReactDOM.render(<AddExpensePage />, document.querySelector('.container'))
     },
     showProfile: function() {
       ReactDOM.render(<ProfilePage />, document.querySelector('.container'))

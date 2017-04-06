@@ -10,20 +10,25 @@ const usersSchema = new mongoose.Schema({
   // x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x
   name:      { type: String },
   createdAt: { type: Date, default: Date.now },
-  houseId: { type: String }
-
+  house: { type: mongoose.Schema.Types.ObjectId, ref: 'Home' },
+  isOwner: { type: Boolean, default: false }
 })
 
 const homeSchema = new mongoose.Schema({
 	name: { type: String, required: true },
 	createdAt: { type: Date, default: Date.now },
-  
-  members: [{ type: String, required: false }],
-  maxExpenses: [{ type: String, required: false }],
-  paidExpenses: [{ type: String, required: false }]
+})
+
+const expenseSchema = new mongoose.Schema({
+  category: { type: String, enum: ['Rent', 'Electricity', 'Gas', 'Utilities', 'Supplies', 'Groceries', 'Other'] },
+  debtor: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  amount: { type: Number, required: true }, 
+  isPaid: { type: Boolean, default: false },
+  house: { type: mongoose.Schema.Types.ObjectId, ref: 'Home' }
 })
 
 module.exports = {
   User: mongoose.model('User', usersSchema),
-  Home: mongoose.model('Home', homeSchema)
+  Home: mongoose.model('Home', homeSchema),
+  Expense: mongoose.model('Expense', expenseSchema)
 }

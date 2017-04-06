@@ -15,7 +15,7 @@ var HomeNav = React.createClass({
 							<a className="create-nav home-button" href="#createhouse">+ house</a>
 						</li>
 						<li>
-							<a className="home-button" href="#addmembers">+ members</a>
+							<a className="home-button" href="#addexpense">+ expenses</a>
 						</li>
 						<li>
 							<a className="settings-nav home-button" href="#myprofile">Profile</a>

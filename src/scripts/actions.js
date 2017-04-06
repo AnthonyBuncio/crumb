@@ -2,11 +2,11 @@ import STORE from './store.js'
 
 import User from './models/userModel.js'
 import {HouseModel} from './models/houseModel.js'
+import {ExpenseModel} from './models/expenseModel.js'
 
 var ACTIONS = {
 	addHouse: function(formData) {
 		var newHouse = new HouseModel(formData)
-		console.log(User.getCurrentUser().get('_id'))
 		newHouse.save({
 			userId: User.getCurrentUser().get('_id')
 		})
@@ -18,6 +18,21 @@ var ACTIONS = {
 				alert('error saving your home')
 				console.log(error)
 			})
+	},
+	addExpense: function(formData) {
+		var newExpense = new ExpenseModel(formData)
+		newExpense.save({
+			userId: User.getCurrentUser().get('_id')
+		})
+			.done(function(response) {
+				alert('new expense has been added!')
+				console.log(response)
+			})
+			.fail(function(error) {
+				alert('error saving your expense!')
+				console.log(error)
+			})
+
 	},
 	loginUser: function(email, password) {
 		User.login(email, password)
