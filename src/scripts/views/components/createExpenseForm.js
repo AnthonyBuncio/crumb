@@ -39,7 +39,7 @@ var CreateForm = React.createClass({
 	render: function() {
 		return (
 			<form onSubmit={this._handleSubmit} className="expense-form">
-				<select name='expenseCategory'>
+				<select name='expenseCategory' className="expense-category expense-item">
 					<option selected="selected" disabled>Category</option>
 					<option value="Rent">Rent</option>
 					<option value="Electricity">Electricity</option>
@@ -49,10 +49,10 @@ var CreateForm = React.createClass({
 					<option value="Groceries">Groceries</option>
 					<option value="Other">Other</option>
 				</select>
-				<select name='expenseDebtor'>
+				<select name='expenseDebtor' className="expense-debtor expense-item">
 					{this.props.houseMembers.map(this._showOneMember)}
 				</select>
-				<input type='text' name='expenseAmount' placeholder='0.00'></input>
+				<input type='text' name='expenseAmount' className="expense-amount expense-item" placeholder='0.00'></input>
 			</form>
 			)
 	}

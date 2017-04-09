@@ -21,7 +21,11 @@ var MakeHousePage = React.createClass({
 	},
 	_checkForHouse: function() {
 		if (User.getCurrentUser().get('house') != undefined) {
-			return <HasHouse />
+			return <HasHouse 
+					houseModel= {this.state.myHouse}
+					expenseColl= {this.state.houseExpenses}
+					memberColl= {this.state.houseMembers}
+					/>
 		}
 		return <NoHouse />
 	},
@@ -37,7 +41,15 @@ var MakeHousePage = React.createClass({
 })
 
 var HasHouse = React.createClass({
+	_getHouseName: function(model) {
+		return model.get('name')
+	},
+	_clickConfirmation: function() {
+		console.log('button was clicked')
+		location.hash="leavehouse"
+	},
 	render: function() {
+		console.log(this.props.houseModel)
 		return (
 			<div className="main-container">
 				
@@ -53,7 +65,10 @@ var HasHouse = React.createClass({
 				<br />
 				<br />
 
-				<p>You already own a house</p>
+				<h1>You are already a member of the house: {this.props.houseModel.map(this._getHouseName)}</h1>
+				<br />
+				<h2>If you would like to leave this house</h2>
+				<button type='button' onClick={this._clickConfirmation}>Click Here</button>
 			</div>
 			)
 	}

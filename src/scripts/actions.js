@@ -23,6 +23,21 @@ var ACTIONS = {
 				console.log(error)
 			})
 	},
+	//not deleting, but removing house id from a user model
+	removeHouse: function(model) {
+		model.unset('house', { silent: true })
+		model.set({
+			isOwner: false
+		})
+		model.save()
+			.done(function(response) {
+				console.log(response)
+				ACTIONS._getAllUserData()
+			})
+			.fail(function(error) {
+				console.log(error)
+			})
+	},
 	addExpense: function(formData) {
 		var newExpense = new ExpenseModel(formData)
 		newExpense.save({
@@ -30,13 +45,33 @@ var ACTIONS = {
 		})
 			.done(function(response) {
 				alert('new expense has been added!')
-				console.log(response)
+				ACTIONS._getHouseExpenses()
 			})
 			.fail(function(error) {
 				alert('error saving your expense!')
 				console.log(error)
 			})
 
+	},
+	editExpense: function(model, boolean) {
+		model.set({
+			isPaid : boolean
+		})
+		model.save()
+			.done(function(response) {
+				ACTIONS._getHouseExpenses()
+			})
+			.fail(function(error) {
+				console.log(error)
+			})
+	},
+	//remove debt from user in backend
+	deleteExpense: function(model) {
+		model.destroy()
+			.done(ACTIONS._getHouseExpenses())
+			.fail(function(error) {
+				console.log('delete failed', error)
+			})
 	},
 	_getAllUserData: function() {
 		ACTIONS._getHouseMembers()
@@ -122,7 +157,7 @@ var ACTIONS = {
 				alert('an error has occured registering user')
 				console.log(error)
 			})
-	} 
+	}
 }
 
 export default ACTIONS

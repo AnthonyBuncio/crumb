@@ -18,6 +18,9 @@ export var ExpenseModel = Backbone.Model.extend({
 })
 
 export var ExpenseCollection = Backbone.Collection.extend({
+	comparator: function(model) {
+		return new Date(model.get('createdAt')).getTime() * -1
+	},
 	model: ExpenseModel,
 	url: '/api/expenses'
 })

@@ -11,7 +11,8 @@ const usersSchema = new mongoose.Schema({
   name:      { type: String },
   createdAt: { type: Date, default: Date.now },
   house: { type: mongoose.Schema.Types.ObjectId, ref: 'Home' },
-  isOwner: { type: Boolean, default: false }
+  isOwner: { type: Boolean, default: false },
+  debt: { type: Number, default: 0 }
 })
 
 const homeSchema = new mongoose.Schema({
@@ -24,7 +25,8 @@ const expenseSchema = new mongoose.Schema({
   debtor: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   amount: { type: Number, required: true }, 
   isPaid: { type: Boolean, default: false },
-  house: { type: mongoose.Schema.Types.ObjectId, ref: 'Home' }
+  house: { type: mongoose.Schema.Types.ObjectId, ref: 'Home' },
+  createdAt: { type: Date, default: Date.now }
 })
 
 module.exports = {

@@ -106,7 +106,7 @@ const Expense = require('../db/schema.js').Expense
     //**********************************************
     apiRouter
       .get ('/expenses', function(request, response) {
-        Expense.find(request.query, function(error, records) {
+        Expense.find(request.query).populate('debtor house').exec( function(error, records) {
           if (error) {
             return response.status(400).json(error)
           }
@@ -120,12 +120,20 @@ const Expense = require('../db/schema.js').Expense
           if (error) {
             return response.status(400).json(error)
           }
-          User.findByIdAndUpdate(request.body.userId, request.body.userId, (err, userRecord)=>{
-            if(err) {
-              return response.json(err)
+          User.findByIdAndUpdate(request.body.userId, request.body.userId, (error, userRecord)=>{
+            if(error) {
+              return response.json(error)
             } else {
               expenseRecord.house = userRecord.house;
               expenseRecord.save()
+            }
+          })
+          User.findByIdAndUpdate(request.body.debtor, request.body.debtor, (error, debtorRecord) => {
+            if(error) {
+              return response.json(error)
+            } else {
+              debtorRecord.debt += expenseRecord.amount;
+              debtorRecord.save()
             }
           })
           response.json(expenseRecord)
@@ -133,15 +141,38 @@ const Expense = require('../db/schema.js').Expense
       })
 
       .put ('/expenses/:id', function(request, response) {
-        Expense.findByIdAndUpdate(request.params.id, request.body, {new:true}, function(error, record) {
+        Expense.findByIdAndUpdate(request.params.id, request.body, {new:true}, function(error, expenseRecord) {
           if (error) {
             return response.status(400).json(error)
           }
-          response.json(record)
+          User.findByIdAndUpdate(request.body.debtor, request.body.debtor, (error, debtorRecord) => {
+            if (error) {
+              return response.json(error)
+            } else if (expenseRecord.isPaid === false) {
+              debtorRecord.debt += expenseRecord.amount;
+              debtorRecord.save()
+            } else if (expenseRecord.isPaid === true) {
+              debtorRecord.debt -= expenseRecord.amount;
+              debtorRecord.save()
+            }
+          })
+          response.json(expenseRecord)
         })
       })
 
       .delete ('/expenses/:id', function(request, response) {
+        Expense.findByIdAndUpdate(request.params.id, request.params.id, {new:true}, function(error, expenseRecord) {
+          if (error) {
+            return response.status(400).json(error)
+          }
+          console.log('the expense id', request.params.id)
+          // User.findByIdAndUpdate(request.body.debtor, request.body.debtor, (error, debtorRecord) => {
+          //   if (error) {
+          //     return response.status(400).json(error)
+          //   }
+          //   console.log(debtorRecord)
+          // })
+        })
         Expense.remove({_id: request.params.id}, function(error) {
           if (error) {
             return response.status(400).json(error)
