@@ -8,6 +8,7 @@ const Expense = require('../db/schema.js').Expense
   
   apiRouter
     .get('/users', function(req, res){
+      // User.find(req.query, "-password").populate('house debt').exec( function(err, results){
       User.find(req.query , "-password", function(err, results){
         if(err) return res.json(err) 
         res.json(results)
@@ -16,23 +17,24 @@ const Expense = require('../db/schema.js').Expense
 
   apiRouter
     .get('/users/:_id', function(req, res){
+      // User.findById(req.params._id, "-password").populate('house debt').exec( function(err, results){
       User.findById(req.params._id, "-password", function(err, record){
         if(err || !record ) return res.json(err) 
         res.json(record)
       })
     })
+    
     .put('/users/:_id', function(req, res){
-
       User.findByIdAndUpdate(req.params._id, req.body, function(err, record){
-          if (err) {
-            res.status(500).send(err)
-          }
-          else if (!record) {
-            res.status(400).send('no record found with that id')
-          }
-          else {
-            res.json(Object.assign({},req.body,record))
-          }
+        if (err) {
+          res.status(500).send(err)
+        }
+        else if (!record) {
+          res.status(400).send('no record found with that id')
+        }
+        else {
+          res.json(Object.assign({},req.body,record))
+        }
       })
     })
 
@@ -161,18 +163,6 @@ const Expense = require('../db/schema.js').Expense
       })
 
       .delete ('/expenses/:id', function(request, response) {
-        Expense.findByIdAndUpdate(request.params.id, request.params.id, {new:true}, function(error, expenseRecord) {
-          if (error) {
-            return response.status(400).json(error)
-          }
-          console.log('the expense id', request.params.id)
-          // User.findByIdAndUpdate(request.body.debtor, request.body.debtor, (error, debtorRecord) => {
-          //   if (error) {
-          //     return response.status(400).json(error)
-          //   }
-          //   console.log(debtorRecord)
-          // })
-        })
         Expense.remove({_id: request.params.id}, function(error) {
           if (error) {
             return response.status(400).json(error)

@@ -15,8 +15,8 @@ var ACTIONS = {
 			userId: User.getCurrentUser().get('_id')
 		})
 			.done(function(response) {
+				ACTIONS._getMyHouse()
 				location.hash='home'
-				ACTIONS._getAllUserData()
 			})
 			.fail(function(error) {
 				alert('error saving your home')
@@ -33,18 +33,6 @@ var ACTIONS = {
 			.done(function(response) {
 				console.log(response)
 				ACTIONS._getAllUserData()
-			})
-			.fail(function(error) {
-				console.log(error)
-			})
-	},
-	giveOwner: function(model) {
-		model.set({
-			isOwner : true
-		})
-		model.save()
-			.done(function(response) {
-				alert(`${model.name} has been granted ownership!`)
 			})
 			.fail(function(error) {
 				console.log(error)
@@ -77,7 +65,6 @@ var ACTIONS = {
 				console.log(error)
 			})
 	},
-	//remove debt from user in backend
 	deleteExpense: function(model) {
 		model.destroy()
 			.done(ACTIONS._getHouseExpenses())

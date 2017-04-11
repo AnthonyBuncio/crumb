@@ -18,11 +18,6 @@ var ProfilePage = React.createClass({
 	getInitialState: function() {
 		return STORE.data
 	},
-	_checkForOwner: function() {
-		if (User.getCurrentUser().get('isOwner')) {
-			return <OwnerPrivilege members={STORE.get('houseMembers')}/>
-		}
-	},
 	_changeName: function(eventObj) {
 		eventObj.preventDefault()
 		var formEl = eventObj.target,
@@ -71,35 +66,8 @@ var ProfilePage = React.createClass({
 								<button type='submit'>Change my email.</button>
 							</div>
 						</form>
-						{this._checkForOwner()}
 					</div>
 			</div>
-			)
-	}
-})
-
-var OwnerPrivilege = React.createClass({
-	_makeList: function(model) {
-		if (model.get('isOwner') === false) {
-			return <option value={model.get('_id')}>{model.get('name')}</option>
-		}
-	},
-	_makeOwner: function(eventObj) {
-		eventObj.preventDefault()
-		var formEl = eventObj.target,
-			formData = formEl.makeOwner.value
-		formEl.reset()
-		console.log(formData)
-	},
-	render: function() {
-		return (
-			<form onSubmit={this._makeOwner} className="make-owner-form">
-				<select name='makeOwner' className="owner-form">
-					<option selected="selected" disabled>Members</option>
-					{this.props.members.map(this._makeList)}
-				</select>
-				<button type='submit'>Give owner access.</button>
-			</form>
 			)
 	}
 })
