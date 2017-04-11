@@ -15,8 +15,8 @@ var ACTIONS = {
 			userId: User.getCurrentUser().get('_id')
 		})
 			.done(function(response) {
-				alert('saved your home!')
-				console.log(response)
+				location.hash='home'
+				ACTIONS._getAllUserData()
 			})
 			.fail(function(error) {
 				alert('error saving your home')
@@ -33,6 +33,18 @@ var ACTIONS = {
 			.done(function(response) {
 				console.log(response)
 				ACTIONS._getAllUserData()
+			})
+			.fail(function(error) {
+				console.log(error)
+			})
+	},
+	giveOwner: function(model) {
+		model.set({
+			isOwner : true
+		})
+		model.save()
+			.done(function(response) {
+				alert(`${model.name} has been granted ownership!`)
 			})
 			.fail(function(error) {
 				console.log(error)
@@ -126,6 +138,23 @@ var ACTIONS = {
 				console.log(error)
 			})
 	},
+	_getMyExpenses: function() {
+		var myExpenses = STORE.get('houseExpenses')
+		myExpenses.fetch({
+			data: {
+				house: User.getCurrentUser().get('house'),
+				debtor: User.getCurrentUser().get('_id')
+			}
+		})
+			.done(function() {
+				STORE.set({
+					houseExpenses: myExpenses
+				})
+			})
+			.fail(function(error) {
+				console.log(error)
+			})
+	},
 	loginUser: function(email, password) {
 		User.login(email, password)
 			.done(function(response) {
@@ -155,6 +184,28 @@ var ACTIONS = {
 			})
 			.fail(function(error) {
 				alert('an error has occured registering user')
+				console.log(error)
+			})
+	},
+	changeUserName: function(formData) {
+		var currentUser = User.getCurrentUser()
+		currentUser.set(formData)
+		currentUser.save()
+			.done(function(response) {
+				alert(`Your name has been changed to ${response.name}`)
+			})
+			.fail(function(error) {
+				console.log(error)
+			})
+	},
+	changeUserEmail: function(formData) {
+		var currentUser = User.getCurrentUser()
+		currentUser.set(formData)
+		currentUser.save()
+			.done(function(response) {
+				alert(`Your email has been changed to ${response.email}`)
+			})
+			.fail(function(error) {
 				console.log(error)
 			})
 	}

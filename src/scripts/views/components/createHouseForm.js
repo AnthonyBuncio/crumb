@@ -27,6 +27,9 @@ var CreateForm = React.createClass({
 			<form onSubmit={this._handleSubmit} className="house-form">
 				<h3>Create a name for your home:</h3>
 				<input type='text' name='houseName' placeholder='House name' />
+				<div>
+					<button type='submit'>Create my house</button>
+				</div>
 			</form>
 			)
 	}

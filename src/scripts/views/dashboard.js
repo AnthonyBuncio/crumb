@@ -1,4 +1,5 @@
 import React from 'react'
+import AmCharts from 'amcharts3'
 
 import ACTIONS from '../actions.js'
 import STORE from '../store.js'
@@ -21,10 +22,10 @@ var Dashboard = React.createClass({
 		return STORE.data
 	},
 	_checkForHouse: function() {
-			return <HasHouse 
-					houseModel= {this.state.myHouse}
-					expenseColl= {this.state.houseExpenses}
-					memberColl= {this.state.houseMembers}/>
+		return <HasHouse 
+				houseModel= {this.state.myHouse}
+				expenseColl= {this.state.houseExpenses}
+				memberColl= {this.state.houseMembers}/>
 	},
 	render: function() {
 		console.log('@ homepage, state of app', this.state)
@@ -43,9 +44,8 @@ var HasHouse = React.createClass({
 		return model.get('name')
 	},
 	_getHouseMembers: function(model) {
-		var _nameToUpperCase = model.get('name').charAt(0).toUpperCase() + model.get('name').slice(1)
 		return <li>
-			   	 <h2>{_nameToUpperCase}</h2>
+			   	 <h2>{model.get('name')}</h2>
 			   	 <p>Debt: ${model.get('debt')}</p>
 			   </li>
 	},
@@ -60,11 +60,8 @@ var HasHouse = React.createClass({
 			<div className="main-container">
 				
 				<h1 className="dashboard-title">Dashboard</h1>
-				<br />
-				<br />
-				<h2 className="dashboard-invite">Invite your friends to join your house using this link: http://localhost:3000/#signup/{User.getCurrentUser().get('house')}</h2>
-				<br />
-				<h2 className="dashboard-house">Your House: {this.props.houseModel.map(this._getHouseName)}</h2>
+				<h2 className="dashboard-house">{this.props.houseModel.map(this._getHouseName)}</h2>
+				<h2 className="dashboard-invite">Invite your friends to join your house using this link: <a href={`http://localhost:3000/#signup/${User.getCurrentUser().get('house')}`}>http://localhost:3000/#signup/{User.getCurrentUser().get('house')}</a></h2>
 				<h2 className="dashboard-members">House Members</h2>
 					<ul >
 						{this.props.memberColl.map(this._getHouseMembers)}

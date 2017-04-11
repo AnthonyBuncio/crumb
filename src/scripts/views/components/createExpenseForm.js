@@ -29,12 +29,10 @@ var CreateForm = React.createClass({
 				amount: formEl.expenseAmount.value
 			}
 		formEl.reset()
-		console.log(formData.debtor)
 		ACTIONS.addExpense(formData)
 	},
 	_showOneMember: function(model) {
-		var _nameToUpperCase = model.get('name').charAt(0).toUpperCase() + model.get('name').slice(1)
-		return <option value={`${model.get('_id')}`}>{_nameToUpperCase}</option>
+		return <option value={`${model.get('_id')}`}>{model.get('name')}</option>
 	},
 	render: function() {
 		return (
@@ -50,6 +48,7 @@ var CreateForm = React.createClass({
 					<option value="Other">Other</option>
 				</select>
 				<select name='expenseDebtor' className="expense-debtor expense-item">
+					<option selected="selected" disabled>Members</option>
 					{this.props.houseMembers.map(this._showOneMember)}
 				</select>
 				<input type='text' name='expenseAmount' className="expense-amount expense-item" placeholder='0.00'></input>

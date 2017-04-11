@@ -18,12 +18,13 @@ var SignupForm = React.createClass({
 	_handleSubmit: function(eventObj) {
 		eventObj.preventDefault()
 		var input = eventObj.target,
+			newName = input.name.value,
+			nameToUpperCase = newName.charAt(0).toUpperCase() + newName.slice(1),
 			userInput = {
-				'name': input.name.value,
+				'name': nameToUpperCase,
 				'email': input.email.value,
 				'password': input.password.value
 			}
-		console.log(userInput)
 		ACTIONS.registerUser(userInput)
 	},
 	render: function() {

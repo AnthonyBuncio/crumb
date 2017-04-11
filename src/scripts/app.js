@@ -14,18 +14,23 @@ import MakeHousePage from './views/createHousePage.js'
 import AddExpensePage from './views/addExpensePage.js'
 import ProfilePage from './views/profilePage.js'
 import LeaveHousePage from './views/leaveHousePage.js'
+import MyExpenses from './views/myExpenses.js'
 
 const app = function() {
   var Router = Backbone.Router.extend({
   	routes : {
   		"" : "showLanding",
       "home" : "showHome",
+      "login" : "showLogin",
+
   		"signup" : "showSignup",
       "signup/:id" : "showSignupToHouse",
-  		"login" : "showLogin",
+
       "createhouse" : "makeHouse",
       "leavehouse" : "removeHouse",
+
       "addexpense" : "showExpenseForm",
+
       "myprofile" : "showProfile",
   		"*default" : "handleDefault"
   	},
@@ -54,7 +59,10 @@ const app = function() {
       ReactDOM.render(<LeaveHousePage />, document.querySelector('.container'))
     },
     showExpenseForm: function() {
-      ReactDOM.render(<AddExpensePage />, document.querySelector('.container'))
+      if (User.getCurrentUser().get('isOwner')) {
+        return ReactDOM.render(<AddExpensePage />, document.querySelector('.container'))
+      }
+      return ReactDOM.render(<MyExpenses />, document.querySelector('.container'))
     },
     showProfile: function() {
       ReactDOM.render(<ProfilePage />, document.querySelector('.container'))
