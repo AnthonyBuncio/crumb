@@ -54,14 +54,14 @@ var ProfilePage = React.createClass({
 					<div className="main-container profile-page">
 						<h2>Edit name: </h2>
 						<form onSubmit={this._changeName}>
-							<input type='text' name='name' placeholder='Enter Name'></input>
+							<input className="change-name"type='text' name='name' placeholder='Enter Name'></input>
 							<div>
 								<button type='submit'>Change my name.</button>
 							</div>
 						</form>
 						<h2>Edit email: </h2>
 						<form onSubmit={this._changeEmail}>
-							<input type='text' name='email' placeholder='Enter Email'></input>
+							<input className="change-email" type='text' name='email' placeholder='Enter Email'></input>
 							<div>
 								<button type='submit'>Change my email.</button>
 							</div>

@@ -47,10 +47,11 @@ var ExpenseTable = React.createClass({
 				<p>Expense History</p>
 				<table className="expense-table">
 					<thead>
-						<tr>
+						<tr className='table-header'>
 							<th>Posted</th>
 							<th>Category</th>
 							<th>Amount</th>
+							<th>Due By</th>
 							<th>Status</th>
 						</tr>
 					</thead>
@@ -108,6 +109,7 @@ var TableItems = React.createClass({
 					<td>{this._getDate(expense.get('createdAt'))}</td>
 					<td>{expense.get('category')}</td>
 					<td>$ {expense.get('amount')}</td>
+					<td>{this._getDate(expense.get('deadline'))}</td>
 					<td>{this._isPaid()} </td>
 				</tr>
 			</tbody>

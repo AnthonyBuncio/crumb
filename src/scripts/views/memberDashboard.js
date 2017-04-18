@@ -85,7 +85,7 @@ var ShowData = React.createClass({
 			return (
 				<table className="expense-table">
 					<thead>
-						<tr>
+						<tr className="table-header">
 							<th>Posted</th>
 							<th>Category</th>
 							<th>Amount</th>
@@ -197,7 +197,8 @@ var ShowData = React.createClass({
 				<h2 className="dashboard-house">{this.props.houseModel.models.map(this._getHouseName)}</h2>
 				<h2 className="dashboard-invite">Invite your friends to join your house using this link: <a href={`http://localhost:3000/#signup/${User.getCurrentUser().get('house')}`}>http://localhost:3000/#signup/{User.getCurrentUser().get('house')}</a></h2>
 				<Line data={chartData} options={chartOptions} width="500px" height="300px"/>
-				<h2>My Current Expenses</h2>
+				<br/>
+				<h2 className="center-header-med">My Current Expenses</h2>
 					{this.checkWholeArray()}				
 			</div>
 			)

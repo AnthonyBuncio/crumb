@@ -47,8 +47,8 @@ var ShowExpenses = React.createClass({
 				<p>House Expenses</p>
 				<table className="expense-table">
 					<thead>
-						<tr>
-							<th></th>
+						<tr className="table-header">
+							<th className="blank"></th>
 							<th>Name</th>
 							<th>Posted</th>
 							<th>Category</th>
@@ -56,7 +56,7 @@ var ShowExpenses = React.createClass({
 							<th>Due By</th>
 							<th>Status</th>
 							<th>Email</th>
-							<th></th>
+							<th className="blank"></th>
 						</tr>
 					</thead>
 					{this.props.myExpenses.map(this._listExpenses)}
@@ -118,7 +118,8 @@ var MakeList = React.createClass({
 			now = moment(),
 			daysUntil = now.to(end, true),
 			getNumber = parseFloat(daysUntil.split(' ')[0])
-		if (getNumber > 3) {
+		console.log(getNumber)
+		if (getNumber > 3 || getNumber === NaN) {
 			return ""
 		} else {
 			return "expense-flash"
@@ -132,7 +133,7 @@ var MakeList = React.createClass({
 		if (getNumber > 3) {
 			return ""
 		} else {
-			return <i className="material-icons md-36">local_atm</i>
+			return <i className="material-icons">local_atm</i>
 		}
 	},
 	render: function() {

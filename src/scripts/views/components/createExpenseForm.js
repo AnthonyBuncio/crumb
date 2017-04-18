@@ -25,7 +25,6 @@ var ExpenseForm = React.createClass({
 				deadline: this.state.deadline
 			}
 		formEl.reset()
-		console.log(formData)
 		ACTIONS.addExpense(formData)
 	},
 	_showOneMember: function(model) {
@@ -37,7 +36,6 @@ var ExpenseForm = React.createClass({
 		})
 	},
 	render: function() {
-		console.log(this.state)
 		return (
 			<div className="expense-form-wrapper">
 				<p>Due date:</p>

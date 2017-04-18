@@ -1,5 +1,7 @@
 import React from 'react'
-import {Bar} from 'react-chartjs-2';
+import {Bar} from 'react-chartjs-2'
+
+Chart.defaults.global.defaultFontColor = 'rgba(255, 255, 255, 1)';
 
 import ACTIONS from '../actions.js'
 import STORE from '../store.js'
@@ -112,21 +114,25 @@ var ShowData = React.createClass({
 		            ],
 		            borderWidth: 1,
 		            data: this._debtArray()
-		        }],
-		    options: {
-		        scales: {
-		            yAxes: [{
-		                ticks: {
-		                    beginAtZero: true
-		                }
-		            }]
-		        }
-		    }
+		        }]
 		}
 		var chartOptions = {
 			legend: {
 				display: false
-			}
+			},
+			scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    },                                       
+                        }],
+                     xAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    },
+
+                }]
+            }
 		}
 		return (
 			<div className="main-container">
@@ -134,7 +140,7 @@ var ShowData = React.createClass({
 				<h2 className="dashboard-house">{this.props.houseModel.map(this._getHouseName)}</h2>
 				<h2 className="dashboard-invite">Invite your friends to join your house using this link: <a href={`http://localhost:3000/#signup/${User.getCurrentUser().get('house')}`}>http://localhost:3000/#signup/{User.getCurrentUser().get('house')}</a></h2>
 				<Bar data={chartData} options={chartOptions} />
-				<h2>Current Expenses</h2>
+				<h2 className="center-header-med">Current Expenses</h2>
 				<Table expenseColl={this.props.expenseColl} />
 			</div>
 			)
@@ -151,7 +157,7 @@ var Table = React.createClass({
 		return (
 			<table className="expense-table">
 				<thead>
-					<tr>
+					<tr className="table-header">
 						<th>Name</th>
 						<th>Posted</th>
 						<th>Category</th>
