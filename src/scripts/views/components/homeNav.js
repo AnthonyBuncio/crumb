@@ -29,7 +29,7 @@ var HomeNav = React.createClass({
 					</ul>
 				</div>
 				<div className="home-nav-wrapper">
-					<a className="home-nav home-button" href="#home">Home</a>
+					<a className="home-nav home-button" href="#home"><i className="material-icons md-36">home</i></a>
 				</div>
 				<div className="logout-nav-wrapper">
 					<a className="logout-nav home-button" onClick={ACTIONS.logoutUser} href="#landing">Logout</a>

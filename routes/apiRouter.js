@@ -8,17 +8,18 @@ const Expense = require('../db/schema.js').Expense
   
   apiRouter
     .get('/users', function(req, res){
-      // User.find(req.query, "-password").populate('house debt').exec( function(err, results){
-      User.find(req.query , "-password", function(err, results){
+      User.find(req.query, "-password").populate('house expenses').exec( function(err, results){
+      // User.find(req.query , "-password", function(err, results){
         if(err) return res.json(err) 
         res.json(results)
-      }).populate('Home')
+      })
+      // .populate('house debt')
     })
-
+    
   apiRouter
     .get('/users/:_id', function(req, res){
-      // User.findById(req.params._id, "-password").populate('house debt').exec( function(err, results){
-      User.findById(req.params._id, "-password", function(err, record){
+      User.findById(req.params._id, "-password").populate('house expenses').exec( function(err, record){
+      // User.findById(req.params._id, "-password", function(err, record){
         if(err || !record ) return res.json(err) 
         res.json(record)
       })
@@ -122,6 +123,7 @@ const Expense = require('../db/schema.js').Expense
           if (error) {
             return response.status(400).json(error)
           }
+          //GETTING THE CURRENT USERS HOUSE ID, AND PLACING IT IN THE EXPENSE SCHEMA
           User.findByIdAndUpdate(request.body.userId, request.body.userId, (error, userRecord)=>{
             if(error) {
               return response.json(error)
@@ -130,11 +132,14 @@ const Expense = require('../db/schema.js').Expense
               expenseRecord.save()
             }
           })
+          //GETTING THE 'DEBTOR' USER, AND POPULATING THE USERS EXPENSES ARRAY
           User.findByIdAndUpdate(request.body.debtor, request.body.debtor, (error, debtorRecord) => {
             if(error) {
               return response.json(error)
             } else {
-              debtorRecord.debt += expenseRecord.amount;
+              // debtorRecord.debt += expenseRecord.amount;
+              // for expenses, and references, you can do the below instead
+              debtorRecord.expenses = debtorRecord.expenses.concat([expenseRecord._id])
               debtorRecord.save()
             }
           })

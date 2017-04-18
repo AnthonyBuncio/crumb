@@ -32,9 +32,11 @@ var MakeHousePage = React.createClass({
 	render: function() {
 		console.log('house page state', this.state)
 		return (
-			<div>
+			<div className="page-wrapper leave-wrapper">
 				<HomeNav />
-				{this._checkForHouse()}
+				<div className="home-wrapper">
+					{this._checkForHouse()}
+				</div>
 			</div>
 			)
 	}
@@ -51,20 +53,7 @@ var HasHouse = React.createClass({
 	render: function() {
 		console.log(this.props.houseModel)
 		return (
-			<div className="main-container">
-				
-				{/* remove once HomeNav is fixed */}
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-
+			<div className="main-container leave-home">
 				<h1>You are already a member of the house: {this.props.houseModel.map(this._getHouseName)}</h1>
 				<br />
 				<h2>If you would like to leave this house</h2>

@@ -41,7 +41,8 @@ var ACTIONS = {
 	addExpense: function(formData) {
 		var newExpense = new ExpenseModel(formData)
 		newExpense.save({
-			userId: User.getCurrentUser().get('_id')
+			userId: User.getCurrentUser().get('_id'),
+			house: User.getCurrentUser().get('house').id
 		})
 			.done(function(response) {
 				alert('new expense has been added!')
@@ -76,6 +77,10 @@ var ACTIONS = {
 		ACTIONS._getHouseMembers()
 		ACTIONS._getMyHouse()
 		ACTIONS._getHouseExpenses()
+	},
+	_getMyUserData: function() {
+		ACTIONS._getMyHouse()
+		ACTIONS._getMyExpenses()
 	},
 	_getHouseMembers: function() {
 		var myMembers = STORE.get('houseMembers')

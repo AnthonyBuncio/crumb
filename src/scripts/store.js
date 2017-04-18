@@ -2,13 +2,14 @@ import Backbone from 'backbone'
 import {HouseCollection} from './models/appModel.js'
 import {ExpenseCollection} from './models/appModel.js'
 import {UserCollection} from './models/appModel.js'
-
+import moment from 'moment'
 
 var STORE = Object.assign({}, Backbone.Events, {
 	data: {
 		myHouse: new HouseCollection(),
 		houseMembers: new UserCollection(),
-		houseExpenses: new ExpenseCollection()
+		houseExpenses: new ExpenseCollection(),
+		deadline: moment()
 	},
 	get: function(prop) {
 		if (this.data[prop] === undefined) {

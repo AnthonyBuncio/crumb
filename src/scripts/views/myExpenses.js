@@ -26,7 +26,7 @@ var MyExpenses = React.createClass({
 	},
 	render: function() {
 		return (
-			<div>
+			<div className="page-wrapper myexpense-wrapper">
 				<HomeNav />
 					<div className="main-container">
 						{this.checkForHouse()}
@@ -44,7 +44,7 @@ var ExpenseTable = React.createClass({
 		console.log('table props', this.props.myExpenses)
 		return (
 			<div className="expense-list">
-				<p>My Expenses</p>
+				<p>Expense History</p>
 				<table className="expense-table">
 					<thead>
 						<tr>
@@ -73,9 +73,8 @@ var TableItems = React.createClass({
 		var currentModel = this.props.listItem
 		ACTIONS.deleteExpense(currentModel)
 	},
-	_getDate: function() {
-		var date = this.props.listItem.get('createdAt'),
-			month = [date.slice(5,6), date.slice(6,7)],
+	_getDate: function(date) {
+		var month = [date.slice(5,6), date.slice(6,7)],
 			day = [date.slice(8,9), date.slice(9,10)],
 			cal = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
 			finalMonth = '',
@@ -102,12 +101,11 @@ var TableItems = React.createClass({
 	},
 	render: function() {
 		var expense = this.props.listItem,
-			paidExpense = (this.props.listItem.get('isPaid')) ? "table-paid" : "table-unpaid",
-			date = expense.get('createdAt')
+			paidExpense = (this.props.listItem.get('isPaid')) ? "table-paid" : "table-unpaid"
 		return (
 			<tbody>
 				<tr>
-					<td>{this._getDate()}</td>
+					<td>{this._getDate(expense.get('createdAt'))}</td>
 					<td>{expense.get('category')}</td>
 					<td>$ {expense.get('amount')}</td>
 					<td>{this._isPaid()} </td>

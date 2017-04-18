@@ -8,7 +8,8 @@ import LandingPage from './views/landingPage.js'
 import SignupPage from './views/signupPage.js'
 import SignupPageId from './views/signupPageId.js'
 import LoginPage from './views/loginPage.js'
-import Dashboard from './views/dashboard.js'
+import OwnerDashboard from './views/ownerDashboard.js'
+import MemberDashboard from './views/memberDashboard.js'
 import HomePage from './views/homePage.js'
 import MakeHousePage from './views/createHousePage.js'
 import AddExpensePage from './views/addExpensePage.js'
@@ -39,7 +40,10 @@ const app = function() {
   	},
     showHome: function() {
       if (User.getCurrentUser().get('house')) {
-        return ReactDOM.render(<Dashboard />, document.querySelector('.container'))
+        if (User.getCurrentUser().get('isOwner')) {
+          return ReactDOM.render(<OwnerDashboard />, document.querySelector('.container'))
+        } 
+        return ReactDOM.render(<MemberDashboard />, document.querySelector('.container'))
       }
       return ReactDOM.render(<HomePage />, document.querySelector('.container'))
     },

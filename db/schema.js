@@ -12,8 +12,8 @@ const usersSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
   house: { type: mongoose.Schema.Types.ObjectId, ref: 'Home' },
   isOwner: { type: Boolean, default: false },
-  debt: { type: Number, default: 0 }
-})
+  expenses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Expense' }]
+})  
 
 const homeSchema = new mongoose.Schema({
 	name: { type: String, required: true },
@@ -26,7 +26,8 @@ const expenseSchema = new mongoose.Schema({
   amount: { type: Number, required: true }, 
   isPaid: { type: Boolean, default: false },
   house: { type: mongoose.Schema.Types.ObjectId, ref: 'Home' },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  deadline: { type: Date, required: false }
 })
 
 module.exports = {

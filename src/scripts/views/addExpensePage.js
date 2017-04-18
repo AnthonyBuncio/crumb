@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 
 import HomeNav from './components/homeNav.js'
 import ExpenseForm from './components/createExpenseForm.js'
@@ -20,8 +21,10 @@ var AddExpensePage = React.createClass({
 		return STORE.data
 	},
 	render: function() {
+		//check to see where the background breaks for 0-10 expenses and shows only half background fill
+		var checkForExpenses = (this.state.houseExpenses.length < 10) ? "page-wrapper empty-list" : "page-wrapper"
 		return (
-			<div>
+			<div className={checkForExpenses}>
 				<HomeNav />
 					<div className="main-container">
 						<br/>
@@ -45,10 +48,12 @@ var ShowExpenses = React.createClass({
 				<table className="expense-table">
 					<thead>
 						<tr>
+							<th></th>
 							<th>Name</th>
 							<th>Posted</th>
 							<th>Category</th>
 							<th>Amount</th>
+							<th>Due By</th>
 							<th>Status</th>
 							<th>Email</th>
 							<th></th>
@@ -82,9 +87,8 @@ var MakeList = React.createClass({
 		var currentModel = this.props.listItem
 		ACTIONS.deleteExpense(currentModel)
 	},
-	_getDate: function() {
-		var date = this.props.listItem.get('createdAt'),
-			month = [date.slice(5,6), date.slice(6,7)],
+	_getDate: function(date) {
+		var month = [date.slice(5,6), date.slice(6,7)],
 			day = [date.slice(8,9), date.slice(9,10)],
 			cal = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
 			finalMonth = '',
@@ -109,17 +113,40 @@ var MakeList = React.createClass({
 		}
 		return finalMonth+ ' ' +finalDay
 	},
+	_getDaysUntilDue: function() {
+		var end = this.props.listItem.get('deadline'),
+			now = moment(),
+			daysUntil = now.to(end, true),
+			getNumber = parseFloat(daysUntil.split(' ')[0])
+		if (getNumber > 3) {
+			return ""
+		} else {
+			return "expense-flash"
+		}
+	},
+	_showWarning: function() {
+		var end = this.props.listItem.get('deadline'),
+			now = moment(),
+			daysUntil = now.to(end, true),
+			getNumber = parseFloat(daysUntil.split(' ')[0])
+		if (getNumber > 3) {
+			return ""
+		} else {
+			return <i className="material-icons md-36">local_atm</i>
+		}
+	},
 	render: function() {
 		var expense = this.props.listItem,
-			paidExpense = (this.props.listItem.get('isPaid')) ? "table-paid" : "table-unpaid",
-			date = expense.get('createdAt')
+			paidExpense = (this.props.listItem.get('isPaid')) ? "table-paid" : "table-unpaid"
 		return (
 			<tbody>
-				<tr>
+				<tr className={this._getDaysUntilDue()}>
+					<td>{this._showWarning()}</td>
 					<td>{expense.get('debtor').name}</td>
-					<td>{this._getDate()}</td>
+					<td>{this._getDate(expense.get('createdAt'))}</td>
 					<td>{expense.get('category')}</td>
 					<td>$ {expense.get('amount')}</td>
+					<td>{this._getDate(expense.get('deadline'))}</td>
 					<td>{this._isPaid()} 
 						<i className={`material-icons ${paidExpense}`} onClick={this._togglePaid}>check_circle</i>
 					</td>

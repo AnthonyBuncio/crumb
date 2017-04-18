@@ -7,7 +7,7 @@ import HomeNav from './components/homeNav.js'
 var HomePage = React.createClass({
 	render: function() {
 		return (
-			<div>
+			<div className="page-wrapper home-wrapper">
 				<HomeNav />
 				<div className="main-container">
 					

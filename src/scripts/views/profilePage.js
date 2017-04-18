@@ -49,7 +49,7 @@ var ProfilePage = React.createClass({
 	},
 	render: function() {
 		return (
-			<div>
+			<div className="page-wrapper profile-wrapper">
 				<HomeNav />
 					<div className="main-container profile-page">
 						<h2>Edit name: </h2>

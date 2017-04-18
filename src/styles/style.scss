@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
-$button: #49beaf;
+
+@import '../../node_modules/react-datepicker/dist/react-datepicker.scss';
+$button: rgb(41, 121, 96);
 $button-highlight: #3fafa1;
 $button-compliment: #be4958;
-$background: #C08497;
+$background: rgb(185, 202, 173);
 
 * {
 	font-family: Helvetica, Arial, sans-serif;
@@ -37,12 +39,20 @@ button:focus {
 	outline: 0
 }
 
+.page-wrapper {
+	background: $background;
+}
+
 //Should be the container inside of first div, right under HomeNav
 .main-container {
 	width: 80%;
 	margin: 0 auto;
+	padding-bottom: 20px;
 }
 
+.home-wrapper,.confirm-wrapper,.leave-wrapper,.myexpense-wrapper,.empty-list {
+	height: 100vh;
+}
 //*************************************
 // 		   	  DASHBOARD
 //*************************************
@@ -59,6 +69,11 @@ button:focus {
 .dashboard-house {
 	text-align: center;
 	font-size: 2.5rem;
+	font-weight: 300;
+}
+
+td {
+	text-align: center;
 	font-weight: 300;
 }
 
@@ -91,11 +106,33 @@ button:focus {
 	font-size: 3rem;
 }
 
+.leave-yes,.leave-no {
+	margin-right: 20px;
+}
+
+.home-wrapper,.confirm-wrapper {
+	position: relative;
+}
+
+.home-wrapper .leave-home {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	left: 50%;
+	top: 50%;
+}
+
+.leave-confirm {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	left: 50%;
+	top: 50%;
+}
+
 //*************************************
 // 		   	  EXPENSE PAGE
 //*************************************
 .expense-form-wrapper {
-	margin-top: 3rem;
+	margin-top: 3.5rem;
 }
 
 .expense-form {
@@ -103,9 +140,9 @@ button:focus {
 }
 
 .expense-item {
-	font-size: 2.5rem;
+	font-size: 2rem;
 	font-weight: 300;
-	margin-right: 2rem;
+	margin-right: 1rem;
 }
 
 .expense-category {
@@ -118,11 +155,17 @@ button:focus {
 
 .expense-amount {
 	border-radius: 5px;
+	width: 100px;
+}
+
+.expense-date {
+	border-radius: 5px;
+	width: 150px;
 }
 
 .expense-list {
 	text-align: center;
-	font-size: 3rem;
+	font-size: 2.5rem;
 	font-weight: 300;
 }
 
@@ -147,10 +190,41 @@ button:focus {
 	color: red;
 }
 
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.expense-flash {
+	color: red;
+	animation: blink 2s;
+    animation-iteration-count: infinite;
+}
+
+.expense-flash:hover {
+	animation: none;
+}
+
 //*************************************
 // 		   	 PROFILE PAGE
 //*************************************
+.profile-wrapper {
+	position: relative;
+	height: 100vh;
+}
+
 .profile-page {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	text-align: center;
 }
 
@@ -239,6 +313,10 @@ p.menu-title:hover + .menu, .menu:hover {
 
 .material-icons.md-18 { 
   font-size: 18px; 
+}
+
+.material-icons.md-36 { 
+  font-size: 30px; 
 }
 
 //*************************************
