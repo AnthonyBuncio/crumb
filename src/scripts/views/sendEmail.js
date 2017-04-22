@@ -1,4 +1,16 @@
-const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');   
+// import Expense from schema
+
+// read all debts from db
+    // if any are overdue   
+        // send email
+Expense.find(request.query).populate('debtor house').exec( function(error, records) {
+          if (error) {
+            return response.status(400).json(error)
+          }
+          response.json(records)
+        })
+
 
 // create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({

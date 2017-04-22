@@ -66,20 +66,7 @@ var HasHouse = React.createClass({
 var NoHouse = React.createClass({
 	render: function() {
 		return (
-			<div className="main-container">
-				
-				{/* remove once HomeNav is fixed */}
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-
+			<div className="main-container make-home">
 				<HouseForm />
 			</div>
 			)

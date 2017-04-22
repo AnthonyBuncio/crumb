@@ -29,3 +29,7 @@ export var UserCollection = Backbone.Collection.extend({
 	model: User,
 	url: '/api/users'
 })
+
+export var SendInvite = Backbone.Model.extend({
+	urlRoot: '/api/sendInvite'
+})

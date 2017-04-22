@@ -1,7 +1,10 @@
 import React from 'react'
 import {Bar} from 'react-chartjs-2'
+import $ from 'jquery'
 
-Chart.defaults.global.defaultFontColor = 'rgba(255, 255, 255, 1)';
+// Chart title font color
+Chart.defaults.global.defaultFontColor = 'rgba(0, 0, 0, 1)';
+Chart.defaults.global.defaultFontSize = 14;
 
 import ACTIONS from '../actions.js'
 import STORE from '../store.js'
@@ -83,18 +86,23 @@ var ShowData = React.createClass({
 		}
 		return debtArray
 	},
+	_showEmailModal: function() {
+		bootbox.prompt("Enter email:", function(result){
+			ACTIONS.sendInvite(result)
+		})
+	},
 	render: function() {
 		var chartData = {
 		    labels: this._membersArray(),
 		    datasets: [{
 		            label: "Current Debt",
 		            backgroundColor: [
-		                'rgba(255, 99, 132, 0.2)',
-		                'rgba(54, 162, 235, 0.2)',
-		                'rgba(255, 206, 86, 0.2)',
-		                'rgba(75, 192, 192, 0.2)',
-		                'rgba(153, 102, 255, 0.2)',
-		                'rgba(255, 159, 64, 0.2)'
+		                'rgba(255, 99, 132, 0.4)',
+		                'rgba(54, 162, 235, 0.4)',
+		                'rgba(255, 206, 86, 0.4)',
+		                'rgba(75, 192, 192, 0.4)',
+		                'rgba(153, 102, 255, 0.4)',
+		                'rgba(255, 159, 64, 0.4)'
 		            ],
 		            borderColor: [
 		                'rgba(255,99,132,1)',
@@ -132,13 +140,25 @@ var ShowData = React.createClass({
                     },
 
                 }]
+            },
+            tooltips: {
+                enabled: true,
+                mode: 'single',
+                callbacks: {
+                    label: function(tooltipItems, data) { 
+                        return 'Current debt: $' + tooltipItems.yLabel;
+                    }
+                }
             }
 		}
 		return (
 			<div className="main-container">
 				<h1 className="dashboard-title">Dashboard</h1>
 				<h2 className="dashboard-house">{this.props.houseModel.map(this._getHouseName)}</h2>
-				<h2 className="dashboard-invite">Invite your friends to join your house using this link: <a href={`http://localhost:3000/#signup/${User.getCurrentUser().get('house')}`}>http://localhost:3000/#signup/{User.getCurrentUser().get('house')}</a></h2>
+				<div className="button-small">
+					<button type='button' onClick={this._showEmailModal}>Invite your friends!</button>
+				</div>
+				<br/>
 				<Bar data={chartData} options={chartOptions} />
 				<h2 className="center-header-med">Current Expenses</h2>
 				<Table expenseColl={this.props.expenseColl} />

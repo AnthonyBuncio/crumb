@@ -1,6 +1,7 @@
 const Router = require('express').Router;
 const apiRouter = Router()
 const helpers = require('../config/helpers.js')
+const nodemailer = require('nodemailer');
 
 const User = require('../db/schema.js').User
 const Home = require('../db/schema.js').Home
@@ -177,5 +178,43 @@ const Expense = require('../db/schema.js').Expense
           })
         })
       })
+
+
+      //**********************************************
+      //                SEND INVITE
+      //**********************************************
+      apiRouter
+        .get('/sendInvite', function(request,response) {
+          console.log(request.request)
+            var emailAddress = request.query.email
+            var houseId = request.query.houseId
+            var name = request.query.name
+
+            // create reusable transporter object using the default SMTP transport
+            let transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'crumbapp.io@gmail.com',
+                    pass: 'theironyard'
+                }
+            });
+
+            // setup email data with unicode symbols
+            let mailOptions = {
+                from: '"Crumb App ⏰💸👻" <crumbapp.io@gmail.com>', // sender address
+                to: emailAddress, // list of receivers
+                subject: 'Join the best expense app on the internet ✔', // Subject line
+                html: `<h2>You have been invited by ${name} to join their exclusive house on Crumb. Use this link to sign up and get started today! <a href=http://localhost:3000/#signup/${houseId}>Click here to join.</a></h2>` // html body
+            };
+
+            // send mail with defined transport object
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    return console.log(error);
+                }
+                console.log('Message %s sent: %s', info.messageId, info.response);
+            })
+        })
+
 
 module.exports = apiRouter

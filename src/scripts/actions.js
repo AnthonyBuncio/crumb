@@ -6,6 +6,7 @@ import {HouseCollection} from './models/appModel.js'
 import {ExpenseModel} from './models/appModel.js'
 import {ExpenseCollection} from './models/appModel.js'
 import {UserCollection} from './models/appModel.js'
+import {SendInvite} from './models/appModel.js'
 
 
 var ACTIONS = {
@@ -196,6 +197,22 @@ var ACTIONS = {
 		currentUser.save()
 			.done(function(response) {
 				alert(`Your email has been changed to ${response.email}`)
+			})
+			.fail(function(error) {
+				console.log(error)
+			})
+	},
+	sendInvite: function(formData) {
+		var sendEmail = STORE.get('invite')
+		sendEmail.fetch({
+			data: {
+				email: formData,
+				houseId: User.getCurrentUser().get('house'),
+				name: User.getCurrentUser().get('name')
+			}
+		})
+			.done(function(response) {
+				console.log(response)
 			})
 			.fail(function(error) {
 				console.log(error)

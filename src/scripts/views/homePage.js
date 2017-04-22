@@ -10,8 +10,8 @@ var HomePage = React.createClass({
 			<div className="page-wrapper home-wrapper">
 				<HomeNav />
 				<div className="main-container">
-
-					<h1 className="no-house">You are currently not linked to a House. <a href="#createhouse">Click here</a> to create a new home and start keeping track!</h1>
+					<h1 className="title">Welcome to Crumb!</h1>
+					<h2 className="no-house">You are currently not linked to a House. <a href="#createhouse">Click here</a> to create a new home and start keeping track!</h2>
 				</div>
 			</div>
 			)

@@ -38,9 +38,12 @@ var ExpenseForm = React.createClass({
 	render: function() {
 		return (
 			<div className="expense-form-wrapper">
-				<p>Due date:</p>
-				<DatePicker name='date' className="expense-date expense-item" placeholderText="Select a date" selected={this.state.deadline} onChange={this._handleDate}/>
+				<div className="date-wrapper">
+					<label>Due by?</label>
+					<DatePicker name='date' className="expense-date expense-item" placeholderText="Select a date" selected={this.state.deadline} onChange={this._handleDate}/>
+				</div>
 				<form onSubmit={this._handleSubmit} className="expense-form">
+					<label>What?</label>
 					<select name='expenseCategory' className="expense-category expense-item">
 						<option selected="selected" disabled>Category</option>
 						<option value="Rent">Rent</option>
@@ -51,13 +54,17 @@ var ExpenseForm = React.createClass({
 						<option value="Groceries">Groceries</option>
 						<option value="Other">Other</option>
 					</select>
+					<label>Who?</label>
 					<select name='expenseDebtor' className="expense-debtor expense-item">
 						<option selected="selected" disabled>Members</option>
 						{STORE.get('houseMembers').map(this._showOneMember)}
 					</select>
+					<label>How much?</label>
+					<span className="dollar-sign">$</span>
 					<input type='text' name='expenseAmount' className="expense-amount expense-item" placeholder='0.00'></input>
 				</form>
 			</div>
+
 			)
 	}
 })

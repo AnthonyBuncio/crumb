@@ -142,7 +142,7 @@ var MakeList = React.createClass({
 		return (
 			<tbody>
 				<tr className={this._getDaysUntilDue()}>
-					<td>{this._showWarning()}</td>
+					<td className="table-urgent">{this._showWarning()}</td>
 					<td>{expense.get('debtor').name}</td>
 					<td>{this._getDate(expense.get('createdAt'))}</td>
 					<td>{expense.get('category')}</td>

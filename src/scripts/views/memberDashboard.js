@@ -1,5 +1,7 @@
 import React from 'react'
-import {Line} from 'react-chartjs-2';
+import {Line} from 'react-chartjs-2'
+import $ from 'jquery'
+import bootstrap from 'bootstrap'
 
 import ACTIONS from '../actions.js'
 import STORE from '../store.js'
@@ -174,6 +176,11 @@ var ShowData = React.createClass({
 			})
 		}
 	},
+	_showEmailModal: function() {
+		bootbox.prompt("Enter email:", function(result){
+			ACTIONS.sendInvite(result)
+		})
+	},
 	render: function() {
 		var chartData = {
 			labels: ["Rent", "Elecricity", "Gas", "Utilities", "Supplies", "Groceries", "Other"],
@@ -189,13 +196,25 @@ var ShowData = React.createClass({
 		                beginAtZero: true
 		            }
 		        }]
+		    },
+		    tooltips: {
+		        enabled: true,
+		        mode: 'single',
+		        callbacks: {
+		            label: function(tooltipItems, data) {
+		                return '$' + tooltipItems.yLabel;
+		            }
+		        }
 		    }
 		}
 		return (
 			<div className="main-container">
 				<h1 className="dashboard-title">Dashboard</h1>
 				<h2 className="dashboard-house">{this.props.houseModel.models.map(this._getHouseName)}</h2>
-				<h2 className="dashboard-invite">Invite your friends to join your house using this link: <a href={`http://localhost:3000/#signup/${User.getCurrentUser().get('house')}`}>http://localhost:3000/#signup/{User.getCurrentUser().get('house')}</a></h2>
+				<div className="button-small">
+					<button type='button' onClick={this._showEmailModal}>Invite your friends!</button>
+				</div>
+				<br/>
 				<Line data={chartData} options={chartOptions} width="500px" height="300px"/>
 				<br/>
 				<h2 className="center-header-med">My Current Expenses</h2>
