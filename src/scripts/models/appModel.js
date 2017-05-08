@@ -18,6 +18,8 @@ export var ExpenseModel = Backbone.Model.extend({
 })
 
 export var ExpenseCollection = Backbone.Collection.extend({
+	//return expenses in order from newest(top) to oldest(bottom)
+		//usually places newest expenses at bottom
 	comparator: function(model) {
 		return new Date(model.get('createdAt')).getTime() * -1
 	},

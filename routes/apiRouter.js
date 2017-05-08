@@ -204,7 +204,7 @@ const Expense = require('../db/schema.js').Expense
                 from: '"Crumb App ⏰💸👻" <crumbapp.io@gmail.com>', // sender address
                 to: emailAddress, // list of receivers
                 subject: 'Join the best expense app on the internet ✔', // Subject line
-                html: `<h2>You have been invited by ${name} to join their exclusive house on Crumb. Use this link to sign up and get started today! <a href=http://localhost:3000/#signup/${houseId}>Click here to join.</a></h2>` // html body
+                html: `<h2>You have been invited by ${name} to join their exclusive house on Crumb. Use this link to sign up and get started today! <a href=https://crumbapp.herokuapp.com/#signup/${houseId}>Click here to join.</a></h2>` // html body
             };
 
             // send mail with defined transport object

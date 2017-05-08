@@ -10,6 +10,7 @@ import {SendInvite} from './models/appModel.js'
 
 
 var ACTIONS = {
+	//creates new House schema under name created by user
 	addHouse: function(formData) {
 		var newHouse = new HouseModel(formData)
 		newHouse.save({
@@ -39,6 +40,7 @@ var ACTIONS = {
 				console.log(error)
 			})
 	},
+	//adds an expense to a household with the form data
 	addExpense: function(formData) {
 		var newExpense = new ExpenseModel(formData)
 		newExpense.save({
@@ -53,8 +55,8 @@ var ACTIONS = {
 				alert('error saving your expense!')
 				console.log(error)
 			})
-
 	},
+	//mark expense as paid/unpaid
 	editExpense: function(model, boolean) {
 		model.set({
 			isPaid : boolean
@@ -67,6 +69,7 @@ var ACTIONS = {
 				console.log(error)
 			})
 	},
+	//delete expense from database
 	deleteExpense: function(model) {
 		model.destroy()
 			.done(ACTIONS._getHouseExpenses())
@@ -74,15 +77,18 @@ var ACTIONS = {
 				console.log('delete failed', error)
 			})
 	},
+	//gets ALL data for OWNER ONLY
 	_getAllUserData: function() {
 		ACTIONS._getHouseMembers()
 		ACTIONS._getMyHouse()
 		ACTIONS._getHouseExpenses()
 	},
+	//gets ALL data for SINGLE MEMBER
 	_getMyUserData: function() {
 		ACTIONS._getMyHouse()
 		ACTIONS._getMyExpenses()
 	},
+	//retrieves data of all members within a house
 	_getHouseMembers: function() {
 		var myMembers = STORE.get('houseMembers')
 		myMembers.fetch({
@@ -99,6 +105,7 @@ var ACTIONS = {
 				console.log(error)
 			})
 	},
+	//retrieves data of the current users house
 	_getMyHouse: function() {
 		var fetchMyHouse = STORE.get('myHouse')
 		fetchMyHouse.fetch({
@@ -115,6 +122,7 @@ var ACTIONS = {
 				console.log(error)
 			})
 	},
+	//retrieves data of all expenses from all members within a house
 	_getHouseExpenses: function() {
 		var myExpenses = STORE.get('houseExpenses')
 		myExpenses.fetch({
@@ -131,6 +139,7 @@ var ACTIONS = {
 				console.log(error)
 			})
 	},
+	//retrieves data of ONLY the current user
 	_getMyExpenses: function() {
 		var myExpenses = STORE.get('houseExpenses')
 		myExpenses.fetch({
@@ -202,7 +211,14 @@ var ACTIONS = {
 				console.log(error)
 			})
 	},
+	//sends a get request to the backend that will run a script with data passed
+		//sending an email requires:
+			//1. add a 'get' route to the script that can be reached from client side
+			//2. create a new model, directing to the route of the script
+			//3. create an action that can recieve data, if preferred
 	sendInvite: function(formData) {
+		//can be removed from 'STORE.data' and can just be new instance of model
+			//i.e. var sendEmail = new SendInvite()
 		var sendEmail = STORE.get('invite')
 		sendEmail.fetch({
 			data: {
