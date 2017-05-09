@@ -44,7 +44,9 @@ var ExpenseTable = React.createClass({
 		console.log('table props', this.props.myExpenses)
 		return (
 			<div className="expense-list">
+				<br/>
 				<p>Expense History</p>
+				<br/>
 				<table className="expense-table">
 					<thead>
 						<tr className='table-header'>
