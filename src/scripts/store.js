@@ -6,6 +6,7 @@ import {SendInvite} from './models/appModel.js'
 import moment from 'moment'
 
 var STORE = Object.assign({}, Backbone.Events, {
+	//Current state of the application
 	data: {
 		myHouse: new HouseCollection(),
 		houseMembers: new UserCollection(),

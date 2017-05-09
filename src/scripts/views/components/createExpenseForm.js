@@ -6,6 +6,7 @@ import ACTIONS from '../../actions.js'
 import STORE from '../../store.js'
 
 var ExpenseForm = React.createClass({
+	//gets house members to add to form
 	componentWillMount: function() {
 		ACTIONS._getHouseMembers()
 		STORE.on('dataUpdated', () => {
@@ -15,6 +16,7 @@ var ExpenseForm = React.createClass({
 	getInitialState: function() {
 		return STORE.data
 	},
+	//occurs when form is submitted and enter key is pressed
 	_handleSubmit: function(eventObj) {
 		eventObj.preventDefault()
 		var formEl = eventObj.target,
@@ -27,14 +29,17 @@ var ExpenseForm = React.createClass({
 		formEl.reset()
 		ACTIONS.addExpense(formData)
 	},
+	//takes members from the STORE and adds to dropdown menu
 	_showOneMember: function(model) {
 		return <option value={`${model.get('_id')}`}>{model.get('name')}</option>
 	},
+	//changes the user submitted due date in the STORE
 	_handleDate: function(date) {
 		this.setState({
 			deadline : date
 		})
 	},
+	//displays form
 	render: function() {
 		return (
 			<div className="expense-form-wrapper">

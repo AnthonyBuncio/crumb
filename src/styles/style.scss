@@ -5,7 +5,9 @@ $links: #0c6865;
 $button: #21a39b;
 $button-highlight: #37aca5;
 $compliment: #e5686c;
-$background: #9bd2c6;
+$background: white;
+
+//#9bd2c6;
 
 * {
 	font-family: Helvetica, Arial, sans-serif;
@@ -62,7 +64,7 @@ th {
 
 //Should be the container inside of first div, right under HomeNav
 .main-container {
-	width: 85%;
+	width: 80%;
 	margin: 0 auto;
 	padding-bottom: 20px;
 }
@@ -574,11 +576,5 @@ button.login:hover,button.signup:hover {
 //On log-in page, hides 'login' button on nav header
 .login-container .log-in {
 	display: none;
-}
-
-@media (max-width: 768px) {
-	.container {
-		width: 50%;
-	}
 }
 

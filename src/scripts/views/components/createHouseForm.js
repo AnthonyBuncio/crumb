@@ -13,6 +13,8 @@ var HouseForm = React.createClass({
 })
 
 var CreateForm = React.createClass({
+	//takes user input and passes the data to ACTIONS
+		//ACTIONS will create new house with the data as it's name
 	_handleSubmit: function(eventObj) {
 		eventObj.preventDefault()
 		var formEl = eventObj.target,
@@ -22,6 +24,7 @@ var CreateForm = React.createClass({
 		formEl.reset()
 		ACTIONS.addHouse(formData)
 	},
+	//display form
 	render: function() {
 		return (
 			<form onSubmit={this._handleSubmit} className="house-form">

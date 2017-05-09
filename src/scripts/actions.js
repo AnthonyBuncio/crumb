@@ -11,6 +11,7 @@ import {SendInvite} from './models/appModel.js'
 
 var ACTIONS = {
 	//creates new House schema under name created by user
+		//POST request
 	addHouse: function(formData) {
 		var newHouse = new HouseModel(formData)
 		newHouse.save({
@@ -26,6 +27,7 @@ var ACTIONS = {
 			})
 	},
 	//not deleting, but removing house id from a user model
+		//DELETE request
 	removeHouse: function(model) {
 		model.unset('house', { silent: true })
 		model.set({
@@ -41,6 +43,7 @@ var ACTIONS = {
 			})
 	},
 	//adds an expense to a household with the form data
+		//POST request
 	addExpense: function(formData) {
 		var newExpense = new ExpenseModel(formData)
 		newExpense.save({
@@ -48,7 +51,7 @@ var ACTIONS = {
 			house: User.getCurrentUser().get('house').id
 		})
 			.done(function(response) {
-				alert('new expense has been added!')
+				//alert('new expense has been added!')
 				ACTIONS._getHouseExpenses()
 			})
 			.fail(function(error) {
@@ -57,6 +60,7 @@ var ACTIONS = {
 			})
 	},
 	//mark expense as paid/unpaid
+		//PUT request
 	editExpense: function(model, boolean) {
 		model.set({
 			isPaid : boolean
@@ -70,6 +74,7 @@ var ACTIONS = {
 			})
 	},
 	//delete expense from database
+		//DELETE request
 	deleteExpense: function(model) {
 		model.destroy()
 			.done(ACTIONS._getHouseExpenses())
@@ -89,6 +94,7 @@ var ACTIONS = {
 		ACTIONS._getMyExpenses()
 	},
 	//retrieves data of all members within a house
+		//GET request
 	_getHouseMembers: function() {
 		var myMembers = STORE.get('houseMembers')
 		myMembers.fetch({
@@ -106,6 +112,7 @@ var ACTIONS = {
 			})
 	},
 	//retrieves data of the current users house
+		//GET request
 	_getMyHouse: function() {
 		var fetchMyHouse = STORE.get('myHouse')
 		fetchMyHouse.fetch({
@@ -123,6 +130,7 @@ var ACTIONS = {
 			})
 	},
 	//retrieves data of all expenses from all members within a house
+		//GET request
 	_getHouseExpenses: function() {
 		var myExpenses = STORE.get('houseExpenses')
 		myExpenses.fetch({
@@ -140,6 +148,7 @@ var ACTIONS = {
 			})
 	},
 	//retrieves data of ONLY the current user
+		//GET request
 	_getMyExpenses: function() {
 		var myExpenses = STORE.get('houseExpenses')
 		myExpenses.fetch({
@@ -171,7 +180,7 @@ var ACTIONS = {
 	logoutUser: function() {
 		User.logout()
 			.done(function(response) {
-				alert('you have logged out!')
+				//alert('you have logged out!')
 				console.log(response)
 			})
 			.fail(function(error) {
@@ -189,23 +198,25 @@ var ACTIONS = {
 				console.log(error)
 			})
 	},
+	//PUT request
 	changeUserName: function(formData) {
 		var currentUser = User.getCurrentUser()
 		currentUser.set(formData)
 		currentUser.save()
 			.done(function(response) {
-				alert(`Your name has been changed to ${response.name}`)
+				//alert(`Your name has been changed to ${response.name}`)
 			})
 			.fail(function(error) {
 				console.log(error)
 			})
 	},
+	//PUT request
 	changeUserEmail: function(formData) {
 		var currentUser = User.getCurrentUser()
 		currentUser.set(formData)
 		currentUser.save()
 			.done(function(response) {
-				alert(`Your email has been changed to ${response.email}`)
+				//alert(`Your email has been changed to ${response.email}`)
 			})
 			.fail(function(error) {
 				console.log(error)
