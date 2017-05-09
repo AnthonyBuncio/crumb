@@ -183,7 +183,7 @@ var ShowData = React.createClass({
 	},
 	render: function() {
 		var chartData = {
-			labels: ["Rent", "Elecricity", "Gas", "Utilities", "Supplies", "Groceries", "Other"],
+			labels: ["Rent", "Electricity", "Gas", "Utilities", "Supplies", "Groceries", "Other"],
 			datasets: this.props.expenseColl.map(this.mapToArray)
 		}
 		var chartOptions = {
