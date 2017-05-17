@@ -1,9 +1,7 @@
 <h1>Crumb</h1>
-<img src="https://img.shields.io/npm/v/npm.svg" />
-<img src="https://img.shields.io/github/release/qubyte/rubidium.svg" />
-<img src="https://img.shields.io/github/issues-raw/badges/shields/website.svg" />
-<img src="https://img.shields.io/david/expressjs/express.svg" />
-<img src="https://img.shields.io/npm/l/express.svg" />
+<img src="https://img.shields.io/npm/v/npm.svg" /> <img src="https://img.shields.io/github/release/qubyte/rubidium.svg" /> <img src="https://img.shields.io/github/issues-raw/badges/shields/website.svg" /> <img src="https://img.shields.io/david/expressjs/express.svg" /> <img src="https://img.shields.io/npm/l/express.svg" />
+
+!(https://img.shields.io/npm/v/npm.svg) (https://img.shields.io/github/release/qubyte/rubidium.svg) (https://img.shields.io/github/issues-raw/badges/shields/website.svg)
 
 <h2>Description</h2>
 Do you live with friends who never pay their bills? Do your roommates completely ignore all your messages to pay rent? I built Crumb as a way for roommates, or just any group of friends to easily keep track and manage expenses. If they are looking to be more financially responsible, this app is a great way to help them to do just that. Crumb appoints a single person to manage all the expenses within a house/group and issues expenses to those members. Each member has a unique dashboard that contains great visualizations and personalized charts for each member. Easy and intuitive design of this app will finally help you get back in control of your finances!
