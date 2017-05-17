@@ -16,7 +16,6 @@ Do you live with friends who never pay their bills? Do your roommates completely
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/150728942@N02/33911964263/in/photostream/" title="Screen Shot 2017-05-17 at 2.28.11 PM"><img src="https://c1.staticflickr.com/5/4180/33911964263_d320e49743_m.jpg" width="240" height="132" alt="Screen Shot 2017-05-17 at 2.28.11 PM"></a>
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/150728942@N02/33879017634/in/photostream/" title="Screen Shot 2017-05-17 at 2.28.49 PM"><img src="https://c1.staticflickr.com/5/4168/33879017634_0347897b2c_m.jpg" width="240" height="132" alt="Screen Shot 2017-05-17 at 2.28.49 PM"></a>
 
-<br>
 <h2>Frameworks && Libraries</h2>
 <ul>
 <li>Javascript</li>
