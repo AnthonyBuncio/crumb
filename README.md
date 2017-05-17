@@ -30,7 +30,7 @@ Do you live with friends who never pay their bills? Do your roommates completely
 <h2>Install && Development</h2>
 
 ```
-$ git clone https://github.com/dankreiger/react-blog.git
+$ git clone https://github.com/AnthonyBuncio/crumb.git
 $ cd crumb
 $ npm install
 ```
