@@ -1,6 +1,4 @@
 <h1>Crumb</h1>
-<img src="https://img.shields.io/npm/v/npm.svg" /> <img src="https://img.shields.io/github/release/qubyte/rubidium.svg" /> <img src="https://img.shields.io/github/issues-raw/badges/shields/website.svg" /> <img src="https://img.shields.io/david/expressjs/express.svg" /> <img src="https://img.shields.io/npm/l/express.svg" />
-
 [![npm status](https://img.shields.io/npm/v/npm.svg)](https://img.shields.io/npm/v/npm.svg)
 [![github release](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://img.shields.io/github/release/qubyte/rubidium.svg)
 [![issues](https://img.shields.io/github/issues-raw/badges/shields/website.svg)](https://img.shields.io/github/issues-raw/badges/shields/website.svg)
