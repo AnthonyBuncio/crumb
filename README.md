@@ -20,7 +20,6 @@ Do you live with friends who never pay their bills? Do your roommates completely
 <li>Mongoose</li>
 <li>MongoDB</li>
 </ul>
-<br>
 <h2>Install && Development</h2>
 
 ```
