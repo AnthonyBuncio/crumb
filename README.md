@@ -14,11 +14,10 @@ Do you live with friends who never pay their bills? Do your roommates completely
 <li>Mongoose</li>
 <li>MongoDB</li>
 </ul>
-<br>
-<h2>Install && Development</h2>
+<h2>Development</h2>
 
 ```
-$ git clone https://github.com/dankreiger/react-blog.git
+$ git clone https://github.com/anthonybuncio/crumb.git
 $ cd crumb
 $ npm install
 ```
