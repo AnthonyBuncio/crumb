@@ -13,7 +13,7 @@ Do you live with friends who never pay their bills? Do your roommates completely
 
 ![Data](https://farm5.staticflickr.com/4188/33921296943_3468774a77_z.jpg)
 
-## Frameworks & Libraries
+### Frameworks & Libraries
 
 -   Javascript
 -   Backbone.js
@@ -24,7 +24,7 @@ Do you live with friends who never pay their bills? Do your roommates completely
 -   Mongoose
 -   MongoDB
 
-## Install & Development
+### Install & Development
 
 ```
 $ git clone https://github.com/AnthonyBuncio/crumb.git
